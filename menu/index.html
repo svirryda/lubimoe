@@ -1,0 +1,1211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#28b2bf">
+<meta name="robots" content="noindex, nofollow">  <!-- демо: не показывать в поисковиках -->
+<title>Любимое место — меню</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>window.IMGDIR = '../img/';</script>
+<style>
+:root{
+  /* Цвета «Любимого места»: бирюза логотипа (#28b2bf), тёмно-зелёные кофейные листья с него же,
+     светлый тёплый фон как в их меню, коралловое сердечко — их пометка «рекомендуем».
+     Имена переменных остались от исходного шаблона: --wine = основная бирюза, --red = коралл,
+     --pink/--pink-2 = светлая бирюза, --blush = фон страницы. */
+  --paper:#f7f3ec; --paper-2:#eceee8; --card:#fffdfa;
+  --ink:#1d2b2a; --ink-2:#4a5c5a; --muted:#899996; --line:#e0e3dc;
+  --wine:#17818e; --red:#e2655f; --pink:#9fd8dc; --pink-2:#e4f4f5; --gold:#e0a526; --cream:#d9efef;
+  --leaf:#2b5d55;
+  --b:#3f8f6b; --j:#e0a526; --u:#e2366f;
+  --display:"Manrope", system-ui, sans-serif;
+  --script:"Cormorant Garamond", Georgia, serif;
+  --hand:"Cormorant Garamond", Georgia, serif;
+  --sans:"Manrope", system-ui, sans-serif;
+  --blush:#eef4f2;
+  /* листья: кофейные веточки с их логотипа */
+  --lace:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-opacity='.85' stroke-linecap='round'%3E%3Cg transform='translate(30 30) rotate(-20)'%3E%3Cpath d='M0 -16 C 10 -6, 10 6, 0 16 C -10 6, -10 -6, 0 -16Z'/%3E%3Cpath d='M0 -12 V 12'/%3E%3Cpath d='M0 -4 L 5 1 M0 2 L 5 7 M0 -4 L -5 1 M0 2 L -5 7'/%3E%3C/g%3E%3Cg transform='translate(90 60) rotate(35)'%3E%3Cpath d='M0 -16 C 10 -6, 10 6, 0 16 C -10 6, -10 -6, 0 -16Z'/%3E%3Cpath d='M0 -12 V 12'/%3E%3Cpath d='M0 -4 L 5 1 M0 2 L 5 7 M0 -4 L -5 1 M0 2 L -5 7'/%3E%3C/g%3E%3Cg transform='translate(50 92) rotate(12)'%3E%3Cpath d='M0 -16 C 10 -6, 10 6, 0 16 C -10 6, -10 -6, 0 -16Z'/%3E%3Cpath d='M0 -12 V 12'/%3E%3Cpath d='M0 -4 L 5 1 M0 2 L 5 7 M0 -4 L -5 1 M0 2 L -5 7'/%3E%3C/g%3E%3Ccircle cx='98' cy='14' r='3.2'/%3E%3Ccircle cx='16' cy='74' r='3.2'/%3E%3Ccircle cx='74' cy='112' r='3.2'/%3E%3C/g%3E%3C/svg%3E");
+  /* лента: бирюза логотипа с кофейными зёрнами и листьями */
+  --carpet:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='26' viewBox='0 0 64 26'%3E%3Crect width='64' height='26' fill='%2328b2bf'/%3E%3Cg fill='none' stroke='%23eafafb' stroke-width='1.4' stroke-linecap='round'%3E%3Cg transform='translate(16 13) rotate(-18)'%3E%3Cpath d='M0 -8 C 5 -3, 5 3, 0 8 C -5 3, -5 -3, 0 -8Z'/%3E%3Cpath d='M0 -6 V 6'/%3E%3C/g%3E%3Cg transform='translate(48 13) rotate(18)'%3E%3Cpath d='M0 -8 C 5 -3, 5 3, 0 8 C -5 3, -5 -3, 0 -8Z'/%3E%3Cpath d='M0 -6 V 6'/%3E%3C/g%3E%3C/g%3E%3Cg fill='%232b5d55'%3E%3Cellipse cx='32' cy='13' rx='4.4' ry='6'/%3E%3Cellipse cx='0' cy='13' rx='4.4' ry='6'/%3E%3Cellipse cx='64' cy='13' rx='4.4' ry='6'/%3E%3C/g%3E%3Cg fill='none' stroke='%23eafafb' stroke-width='1.2'%3E%3Cpath d='M32 7.5 V 18.5 M0 7.5 V 18.5 M64 7.5 V 18.5'/%3E%3C/g%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:120px;scrollbar-gutter:stable}
+/* двойное касание = два нажатия, а не зум (быстрые «+» на телефоне); увеличение двумя пальцами остаётся */
+html,body,button,a,input,select,label{touch-action:manipulation}
+body{background:var(--blush);color:var(--ink);font-family:var(--sans);font-size:14.5px;line-height:1.45;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:var(--lace) repeat center/96px,radial-gradient(900px 600px at 110% -10%,rgba(40,178,191,.20),transparent 60%),radial-gradient(800px 600px at -15% 40%,rgba(159,216,220,.45),transparent 60%),var(--blush)}
+/* компьютер: вокруг меню — спокойный светлый фон, само меню — белый лист */
+@media (min-width:700px){
+  body{background:#e2dfe0}
+  body::before{background:radial-gradient(1100px 760px at 50% -8%,rgba(255,255,255,.85),transparent 65%),linear-gradient(180deg,#f1eff0,#e2dfe0)}
+  .wrap{background:var(--lace) repeat center/96px,var(--blush);box-shadow:0 0 0 1px rgba(20,45,43,.06),0 24px 70px rgba(20,45,43,.16);min-height:100vh}
+}
+p,li,small,.hint,.desc{text-wrap:pretty}
+h1,h2,h3,h4{text-wrap:balance}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select{font:inherit;color:inherit}
+.wrap{max-width:560px;margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* шапка */
+.hero{display:flex;align-items:center;gap:14px;padding:18px 16px 14px}
+.logo{width:74px;height:74px;flex:none;border-radius:50%;box-shadow:0 0 0 3px var(--card),0 6px 18px rgba(23,129,142,.25)}
+.brand{font-family:var(--display);font-weight:900;font-size:30px;line-height:1;letter-spacing:-.01em;color:var(--ink)}
+.brand i{font-style:normal;color:var(--red)}
+.meta{font-size:12px;color:var(--ink-2);line-height:1.5;margin-top:6px}
+.meta b{display:block;font-family:var(--script);font-weight:400;font-size:17px;color:var(--wine);line-height:1.1;margin-bottom:2px}
+.carpet{height:26px;background:var(--carpet) repeat-x center/auto 26px;border-top:3px solid #19332f;border-bottom:3px solid #19332f;box-shadow:0 -2px 0 var(--cream),0 2px 0 var(--cream)}
+
+
+/* столик (режим заказа) */
+.tablebar{display:none;align-items:center;gap:8px;margin:12px 16px 0;padding:10px 12px;border-radius:16px;background:#19332f;color:#fff}
+html.order .tablebar{display:flex}
+.tablebar .tb-t{flex:1;min-width:0;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--pink)}
+.tablebar .tb-t b{display:block;font-family:var(--display);font-size:16px;letter-spacing:0;text-transform:none;color:#fff;margin-top:1px}
+.tablebar button{flex:none;display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border-radius:99px;background:rgba(255,255,255,.12);font-size:12px;font-weight:700;white-space:nowrap}
+.tablebar button svg{width:15px;height:15px;flex:none}
+.tablebar button.hot{background:var(--red)}
+.tablebar button:disabled{opacity:.6}
+
+/* липкая навигация */
+.bar{position:sticky;top:0;z-index:5;background:rgba(238,244,242,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-top:12px}
+@media (hover:none){.bar{-webkit-backdrop-filter:none;backdrop-filter:none;background:rgba(238,244,242,.97)}}   /* на телефоне размытие тормозит прокрутку */
+.tabs{display:flex;gap:4px;overflow-x:auto;padding:9px 16px 7px;scrollbar-width:none}
+.tabs::-webkit-scrollbar,.filters::-webkit-scrollbar{display:none}
+.tab{text-decoration:none;flex:none;padding:7px 12px;border-radius:99px;font-size:13px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:background .2s,color .2s}
+.tab.on{background:var(--wine);color:#fff}
+.tab.hl{color:var(--red)}
+.tab.hl.on{color:#fff;background:var(--red)}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:0 16px 9px;scrollbar-width:none}
+.chip{flex:none;padding:6px 11px;border:1px solid var(--line);border-radius:99px;font-size:12.5px;font-weight:600;background:var(--card);white-space:nowrap;transition:border-color .2s,background .2s}
+.chip.on{border-color:var(--wine);background:var(--wine);color:#fff}
+.flabel{flex:none;display:flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);padding-right:2px}
+.sub{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px 9px;font-size:12px;color:var(--ink-2)}
+.unit{display:flex;align-items:center;gap:7px;white-space:nowrap}
+.seg{flex:none;display:flex;border:1px solid var(--line);border-radius:99px;background:var(--card);overflow:hidden}
+.seg button{padding:5px 11px;font-size:12px;font-weight:600;white-space:nowrap;color:var(--muted)}
+.seg button.on{background:var(--wine);color:#fff}
+.status{display:none;align-items:center;gap:10px;white-space:nowrap}
+.status.on{display:flex}
+.status button{font-weight:700;color:var(--wine);text-decoration:underline;text-underline-offset:3px}
+
+/* обед и акция недели */
+#specials{padding:14px 16px 0;display:grid;gap:10px}
+#specials:empty{display:none}
+.spec{position:relative;display:flex;gap:12px;align-items:center;border-radius:18px;padding:12px 14px;background:var(--card);border:1px solid var(--line);overflow:hidden}
+.spec.lunch{background:linear-gradient(120deg,#e4f4f5,#f4fbfa);border-color:#bfe4e4}
+.sp-ic{flex:none;width:44px;height:44px;border-radius:14px;background:var(--wine);color:#fff;display:grid;place-items:center;font-size:22px}
+.spec b{display:block;font-size:14.5px}
+.spec span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.4;margin-top:2px}
+.sp-hd{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.live{display:inline-block;font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:3px 8px;border-radius:99px;background:#fff;color:var(--muted)}
+.live.on{background:var(--b);color:#fff}
+.live.on::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#c9f7d9;margin-right:5px;vertical-align:1px;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.2}}
+.spec.week{padding:0;align-items:stretch}
+.spec.week img{width:118px;flex:none;object-fit:cover}
+.spec.week .wk{padding:11px 14px 12px 0}
+.spec.week .wk small{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.spec.week ul{list-style:none;margin-top:4px}
+.spec.week li{font-size:12.5px;color:var(--ink-2);padding-left:14px;position:relative;line-height:1.35}
+.spec.week li::before{content:"♥";position:absolute;left:0;color:var(--red);font-size:10px;top:1px}
+
+/* разделы */
+section{padding:18px 16px 4px}
+h2{font-family:var(--script);font-weight:400;font-size:38px;line-height:1;color:var(--wine);margin-bottom:4px}
+.hint{font-size:12.5px;color:var(--muted);margin:2px 0 14px}
+.hint .now{font-weight:800;color:var(--b)}
+.hint .now.off{color:var(--muted)}
+.empty{padding:40px 16px;text-align:center;color:var(--muted);font-size:14px}
+
+/* карточка блюда */
+.card{display:block;width:100%;text-align:left;background:var(--card);border-radius:20px;margin-bottom:14px;overflow:hidden;cursor:pointer;box-shadow:0 1px 0 var(--line),0 14px 30px -22px rgba(23,129,142,.45);transition:transform .15s ease}
+.card:active{transform:scale(.985)}
+.card:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.ph{position:relative}
+.ph img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--paper-2)}
+.noph{display:grid;place-items:center;width:100%;aspect-ratio:3/2;padding:14px;text-align:center;background:linear-gradient(150deg,#2aa3ad,#17818e);color:#eafafb}
+.noph span{font-family:var(--display);font-weight:800;font-size:17px;line-height:1.2;max-width:84%}
+.tags{position:absolute;left:10px;top:10px;display:flex;gap:5px;flex-wrap:wrap}
+.tg{font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:99px;background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.tg.new{background:var(--u);color:#fff}
+.tg.spicy{color:var(--red)}
+.tg.veg{color:var(--b)}
+.card .in{padding:13px 15px 15px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.name{font-weight:800;font-size:15.5px;line-height:1.25}
+.name em{display:block;font-family:var(--hand);font-style:normal;font-weight:700;font-size:18px;color:var(--red);line-height:1}
+.price{font-family:var(--display);font-weight:800;font-size:17px;white-space:nowrap}
+.price small{font-family:var(--sans);font-weight:600;font-size:11px;color:var(--muted)}
+.desc{font-size:12.5px;color:var(--ink-2);margin-top:4px}
+.weight{font-size:11.5px;color:var(--muted);margin-top:3px}
+.kbju{display:flex;gap:6px;margin-top:11px;align-items:stretch}
+.kcal{flex:none;padding:5px 9px;border-radius:10px;background:var(--wine);color:#fff;font-weight:800;font-size:15px;line-height:1.1;text-align:center}
+.kcal span{display:block;font-size:9.5px;font-weight:600;letter-spacing:.08em;opacity:.85}
+.m{flex:1;padding:5px 8px;border-radius:10px;background:var(--paper-2);font-size:14px;font-weight:700;line-height:1.1}
+.m span{display:block;font-size:9.5px;font-weight:600;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+.m i{display:block;height:3px;border-radius:2px;margin-top:5px;background:var(--line);overflow:hidden}
+.m i b{display:block;height:100%}
+.add{position:absolute;right:10px;bottom:10px;width:42px;height:42px;border-radius:50%;background:var(--red);color:#fff;font-size:26px;font-weight:600;line-height:42px;text-align:center;box-shadow:0 6px 16px rgba(226,101,95,.45),0 0 0 3px #fff;transition:transform .15s}
+.add:active{transform:scale(.9)}
+.add.pop{animation:addpop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes addpop{40%{transform:scale(1.25)}}
+.add .q{position:absolute;right:-6px;top:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:#19332f;color:#fff;font-size:11px;font-weight:800;line-height:20px;box-shadow:0 0 0 2px #fff}
+
+/* конструктор завтраков */
+.ct-box{background:var(--card);border-radius:22px;padding:16px 14px 14px;border:1px solid var(--line);box-shadow:0 14px 30px -22px rgba(23,129,142,.45)}
+.ct-intro{font-size:13.5px;line-height:1.55;color:var(--ink-2);text-align:center;padding:4px 6px 10px}
+.ct-short{display:inline-block;font-family:var(--hand);font-weight:700;font-size:22px;color:var(--wine);line-height:1}
+.ct-mode{margin:0 auto 12px;width:max-content}
+.ct-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.ct-col{background:var(--wine);border-radius:14px;padding:8px 5px;display:flex;flex-direction:column;gap:3px}
+.ct-col small{font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);text-align:center;margin-bottom:2px}
+.fw{font-family:var(--sans);font-weight:600;font-size:12.5px;line-height:1.25;color:#eafafb;text-align:left;padding:5px 7px;border-radius:9px;transition:background .2s,color .2s,transform .15s}
+.fw:hover{background:rgba(255,255,255,.1)}
+.fw.on{background:#effaf9;color:var(--wine);transform:scale(1.03)}
+.fw.on::after{content:" ♥";color:var(--red);font-size:14px}
+.ct-res{display:grid;grid-template-columns:186px 1fr;gap:12px;align-items:center}
+.ct-glass{position:relative;height:150px}
+.ct-glass svg{width:120px;height:136px;display:block;overflow:visible;margin-top:12px}
+.ct-plate{position:relative;width:152px;aspect-ratio:1}
+.ct-plate .ct-dish{width:100%;height:100%;display:block;object-fit:contain;
+  filter:drop-shadow(0 8px 18px rgba(26,26,26,.18))}
+.ing{position:absolute;width:32%;aspect-ratio:1;margin:-16% 0 0 -16%;
+  transform:scale(0);transition:transform .5s cubic-bezier(.2,1.5,.4,1);transform-origin:50% 50%}
+.ing.on{transform:scale(1)}
+.ing img{width:100%;height:100%;object-fit:contain;display:block;
+  filter:drop-shadow(0 3px 7px rgba(26,26,26,.22))}
+.ct-cols{grid-template-columns:repeat(3,1fr)}
+.ct-col small{color:#cdeef0}
+.ct-gp{font-size:10px;font-weight:700;color:#9fd8dc;text-align:center;margin-top:3px}
+.ct-tag{position:absolute;left:142px;top:-10px;width:60px;min-height:54px;padding:12px 4px 6px;background:#fdf4e3;box-shadow:0 6px 12px rgba(60,30,10,.18);transform:rotate(8deg);font-family:var(--hand);font-weight:700;font-size:15px;line-height:1.05;color:#2b5d55;text-align:center;opacity:0;transition:opacity .4s,transform .5s cubic-bezier(.2,1.4,.4,1)}
+.ct-tag.on{opacity:1;transform:rotate(5deg)}
+.ct-tag::before{content:"";position:absolute;left:10px;top:-10px;width:9px;height:24px;border-radius:3px;background:linear-gradient(90deg,#c8102e,#e8404a);box-shadow:inset 0 -6px 0 rgba(0,0,0,.12)}
+.ct-tag i{display:block;font-style:normal;font-size:12px;color:var(--red)}
+.ct-num{font-size:12px;color:var(--muted)}
+.ct-num b{font-family:var(--display);font-size:22px;color:var(--wine)}
+.ct-sel{font-family:var(--hand);font-weight:700;font-size:21px;line-height:1.1;color:var(--ink);margin:4px 0 6px;min-height:46px}
+.ct-sel .ph0{color:var(--muted);font-size:18px}
+.ct-price{font-size:12px;color:var(--ink-2);margin-bottom:10px}
+.ct-price b{font-family:var(--display);font-size:16px;color:var(--ink)}
+.ct-ps{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:12px;padding:9px 11px;border-radius:12px;background:var(--paper-2)}
+.btn{display:inline-block;padding:13px 24px;border-radius:99px;background:var(--wine);color:#fff;font-weight:800;font-size:14px;letter-spacing:.01em;text-decoration:none;transition:transform .15s,box-shadow .2s,opacity .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.35;pointer-events:none}
+.btn.red{background:var(--red)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.small{padding:10px 18px;font-size:13px}
+/* телефон: весь конструктор — от столбиков до кнопки — помещается на один экран */
+@media (max-width:560px){
+  .ct-box{padding:12px 10px}
+  .ct-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+  .ct-intro{padding:0;text-align:left}
+  .ct-short{font-size:19px}
+  .ct-mode{margin:0}
+  .ct-mode button{padding:5px 9px;font-size:11.5px}
+  .ct-col{padding:6px 4px;gap:1px}
+  .ct-col small{margin-bottom:1px}
+  .fw{font-size:11.5px;line-height:1.2;padding:4px 5px}
+  .ct-res{grid-template-columns:150px 1fr;gap:8px;padding:8px 0 10px}
+  .ct-glass{height:120px}
+  .ct-plate{width:118px}
+  .ct-glass svg{width:92px;height:104px;margin-top:10px}
+  .ct-tag{left:108px;top:-6px;width:48px;min-height:44px;padding:10px 3px 5px;font-size:11px}
+  .ct-num b{font-size:19px}
+  .ct-sel{font-size:16px;min-height:0;margin:2px 0 4px;-webkit-line-clamp:2}
+  .ct-price{margin-bottom:8px}
+  .ct-ps{margin-top:10px}
+}
+@media (max-width:360px){.fw{font-size:11px;padding:3px 4px}.ct-res{grid-template-columns:152px 1fr}.ct-plate{width:110px}.ct-short{font-size:18px;white-space:nowrap}.ct-tag{left:100px;width:46px}}
+
+/* (блок остался от шаблона, в этом демо не используется) */
+.cks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ck{position:relative;background:var(--card);border-radius:18px;padding:12px 12px 13px;border:1px solid var(--line)}
+.ck svg{width:40px;height:50px;display:block;margin-bottom:6px}
+.ck b{display:block;font-size:13.5px;line-height:1.2}
+.ck small{display:block;font-size:11px;color:var(--muted);margin-top:1px}
+.ck p{font-size:12px;color:var(--ink-2);line-height:1.35;margin-top:4px}
+.ck .na{position:absolute;right:10px;top:10px;font-size:10px;font-weight:800;padding:2px 7px;border-radius:99px;background:var(--pink-2);color:var(--wine)}
+.ck .add,.li .add{position:static;width:30px;height:30px;line-height:30px;font-size:19px;box-shadow:0 4px 10px rgba(226,101,95,.35)}
+.ck .add{position:absolute;right:10px;bottom:10px}
+
+/* бар и напитки — как в печатном меню */
+.list{background:var(--card);border-radius:18px;padding:4px 14px;margin-bottom:12px;border:1px solid var(--line)}
+.list h3{font-family:var(--script);font-weight:400;font-size:24px;color:var(--wine);padding:12px 0 2px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.list h3 small{font-family:var(--sans);font-size:11.5px;color:var(--muted)}
+.li{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dotted #dde3dc}
+.li:last-child{border-bottom:0}
+.li .n{flex:1;font-size:14px;font-weight:600}
+.li .n em{display:block;font-style:normal;font-weight:500;font-size:11.5px;color:var(--muted)}
+.li .v{font-size:11px;color:var(--muted);white-space:nowrap}
+.li .p{font-family:var(--display);font-weight:800;min-width:38px;text-align:right;font-size:14px}
+.reco{display:flex;gap:10px;align-items:center;margin:-4px 0 12px;padding:10px 12px;border-radius:14px;background:var(--pink-2);font-size:12.5px;color:var(--wine);font-weight:600}
+.reco img{width:34px;height:34px;border-radius:50%;flex:none}
+
+footer{padding:22px 16px 110px;font-size:12.5px;color:var(--ink-2);text-align:center}
+footer .slogan{font-family:var(--script);font-size:30px;color:var(--wine);margin:6px 0 12px}
+footer .fb{display:flex;flex-direction:column;gap:8px;align-items:center;margin-bottom:14px}
+footer .mur{font-size:12px;color:var(--muted);max-width:420px;margin:0 auto 12px}
+footer a{color:var(--wine)}
+footer .fine{font-size:11px;color:var(--muted);margin-top:10px}
+
+/* шторка */
+.veil{position:fixed;inset:0;background:rgba(20,45,43,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:20}
+.veil.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;max-height:92vh;overflow-y:auto;background:var(--card);border-radius:24px 24px 0 0;z-index:21;transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);max-width:560px;margin:0 auto;padding-bottom:env(safe-area-inset-bottom)}
+.sheet.on{transform:none}
+.sheet > img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.sheet > img.small{width:220px;aspect-ratio:1;margin:20px auto 0;border-radius:16px;box-shadow:0 10px 26px -18px rgba(26,26,26,.8)}
+.sheet .in{padding:16px 18px 26px}
+.grab{position:sticky;top:0;height:0;z-index:1}
+.close{position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;background:rgba(255,253,248,.94);font-size:20px;line-height:38px;text-align:center;box-shadow:0 1px 6px rgba(0,0,0,.18)}
+.sheet .name{font-size:19px}
+.sheet .desc{font-size:13.5px}
+.split{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:16px 0 8px}
+.legend{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-2)}
+.legend b{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+table.t{width:100%;border-collapse:collapse;margin-top:16px;font-size:13.5px}
+.t th,.t td{padding:7px 4px;border-bottom:1px solid var(--paper-2);text-align:right}
+.t th:first-child,.t td:first-child{text-align:left}
+.t th{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.src{font-size:11.5px;color:var(--muted);margin-top:12px}
+.sh-add{display:flex;width:100%;justify-content:center;margin-top:16px}
+.sheet h3{font-family:var(--script);font-weight:400;font-size:32px;color:var(--wine);line-height:1}
+.sheet .kick{font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+
+/* корзина и счёт */
+#cartbar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));z-index:15;width:min(528px,calc(100% - 24px));transform:translate(-50%,140%);display:flex;align-items:center;gap:12px;padding:10px 10px 10px 16px;border-radius:99px;background:#19332f;color:#fff;box-shadow:0 14px 34px rgba(20,45,43,.45);transition:transform .45s cubic-bezier(.2,1.2,.4,1)}
+#cartbar.on{transform:translate(-50%,0)}
+#cartbar .cb-t{flex:1;font-size:13px}
+#cartbar .cb-t b{font-family:var(--display);font-size:16px}
+#cartbar .btn{padding:11px 18px;background:var(--red)}
+#cartbar.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:translate(-50%,0) scale(1.04)}}
+.cl{list-style:none;margin:10px 0 6px}
+.cl li{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--paper-2)}
+.cl .cn{flex:1;min-width:0;font-size:13.5px;font-weight:700;line-height:1.3}
+.cl .cn small{display:block;font-weight:500;font-size:11.5px;color:var(--muted)}
+.cl .qty{display:flex;align-items:center;gap:6px;flex:none}
+.cl .qty button{width:30px;height:30px;border-radius:50%;background:var(--paper-2);font-size:17px;font-weight:700}
+.cl .qty span{min-width:16px;text-align:center;font-weight:800}
+.cl .cp{min-width:52px;text-align:right;font-family:var(--display);font-weight:800;font-size:13.5px}
+.tot{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 4px;font-size:13px;color:var(--ink-2)}
+.tot b{font-family:var(--display);font-size:22px;color:var(--ink)}
+.sh-btns{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.sh-btns .btn{text-align:center}
+.done-ic{width:68px;height:68px;border-radius:50%;margin:8px auto 12px;background:var(--b);color:#fff;display:grid;place-items:center;font-size:32px;animation:popin .5s cubic-bezier(.2,1.5,.4,1)}
+@keyframes popin{from{transform:scale(.3);opacity:0}}
+.steps3{display:flex;justify-content:space-between;gap:6px;margin:16px 0 4px;counter-reset:s}
+.steps3 div{flex:1;text-align:center;font-size:11.5px;color:var(--muted);position:relative;padding-top:30px}
+.steps3 div::before{counter-increment:s;content:counter(s);position:absolute;left:50%;top:0;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:var(--paper-2);color:var(--muted);font-weight:800;font-size:12px;line-height:24px;transition:background .4s,color .4s}
+.steps3 div.on{color:var(--ink);font-weight:700}
+.steps3 div.on::before{background:var(--b);color:#fff;content:"✓"}
+.center{text-align:center}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.slot{flex:1 1 72px;padding:11px 8px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-family:var(--display);font-weight:800;font-size:15px;transition:all .2s}
+.slot.on{background:var(--wine);color:#fff;border-color:var(--wine);transform:translateY(-2px)}
+.form{display:grid;gap:10px;margin-top:14px}
+.form label{display:grid;gap:4px;font-size:12px;font-weight:700;color:var(--ink-2)}
+.form input,.form select{padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#fff;font-size:15px}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.amt{font-family:var(--display);font-weight:800;font-size:32px;line-height:1.1}
+.amt small{font-family:var(--sans);font-size:14px;color:var(--muted)}
+.payc{position:relative;height:170px;margin:12px 0 4px;perspective:700px}
+.pcard{position:absolute;left:50%;top:10px;width:230px;height:140px;margin-left:-115px;border-radius:16px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,#e2655f,#17818e 60%,#2a1416);box-shadow:0 18px 34px rgba(23,129,142,.45);animation:cardin 1.6s cubic-bezier(.6,0,.3,1) forwards}
+.pcard img{width:38px;height:38px;border-radius:50%}
+.pcard b{position:absolute;left:16px;bottom:14px;font-family:var(--display);letter-spacing:.12em;font-size:13px}
+.pcard i{position:absolute;right:16px;bottom:12px;font-style:normal;font-family:var(--hand);font-size:20px}
+@keyframes cardin{0%{transform:translateY(60px) rotateX(35deg);opacity:0}35%{transform:none;opacity:1}70%{transform:translateY(-4px) scale(1.02)}100%{transform:translateY(-6px) scale(.98)}}
+.heart{position:fixed;z-index:70;pointer-events:none;font-size:22px;animation:heart 1.4s ease-out forwards}
+@keyframes heart{to{transform:translate(var(--dx),var(--dy)) rotate(var(--r)) scale(.6);opacity:0}}
+#otoast{position:fixed;left:50%;top:14px;z-index:65;transform:translate(-50%,-160%);display:flex;gap:10px;align-items:center;max-width:calc(100% - 24px);padding:10px 16px 10px 10px;border-radius:99px;background:#19332f;color:#fff;font-size:13px;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:transform .45s cubic-bezier(.2,1.2,.4,1)}
+#otoast.on{transform:translate(-50%,0)}
+#otoast img{width:30px;height:30px;border-radius:50%;flex:none}
+#otoast b{color:var(--pink)}
+
+
+/* фирменные полосы прокрутки */
+html,.sheet,.concept,.final,.offer,.legal,.ph-list{scrollbar-width:thin;scrollbar-color:#c98a96 transparent}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#e2366f,#17818e);border-radius:99px;border:3px solid transparent;background-clip:padding-box}
+
+
+/* ============ фирменный язык их печатного меню ============
+   Белое поле, песочные плашки, чёрные заголовки капсом, розовое ♡ «рекомендуем»
+   и синий кружок NEW — всё как в их собственном меню из «Актуального».
+   Бирюза логотипа осталась акцентом: кнопки, активный раздел, шапка. */
+:root{
+  --paper:#fffdfb; --paper-2:#f6eee6; --card:#ffffff;
+  --ink:#1a1a1a; --ink-2:#4b4742; --muted:#8c8781; --line:#e8e0d6;
+  --wine:#17818e; --red:#f2777a; --pink:#9fd8dc; --pink-2:#eaf5f5;
+  --gold:#c89a3c; --cream:#f6eee6; --blush:#fffdfb;
+  --new:#2f6fd0;
+  --sh-soft:0 1px 0 rgba(26,26,26,.05), 0 12px 28px -24px rgba(26,26,26,.5);
+}
+body{background:#efeae3;font-size:15px}
+body::before{background:
+  radial-gradient(1200px 700px at 50% -15%, rgba(255,255,255,.75), transparent 70%),
+  linear-gradient(180deg,#f3efe9,#e9e4dc)}
+@media (min-width:700px){
+  body{background:#e7e2da}
+  .wrap{background:var(--paper);box-shadow:0 0 0 1px rgba(26,26,26,.06),0 30px 80px rgba(26,26,26,.14)}
+}
+
+/* шапка — как обложка их меню: белое поле, логотип, чёрное имя */
+.hero{background:var(--paper);color:var(--ink);padding:22px 16px 16px}
+.hero::after{display:none}
+.logo{box-shadow:0 0 0 1px var(--line)}
+.brand{font-family:var(--display);font-weight:800;font-size:27px;letter-spacing:-.02em;color:var(--ink);text-shadow:none}
+.brand i{color:var(--wine)}
+.meta{color:var(--muted);font-size:12px}
+.meta b{font-family:var(--script);font-style:italic;font-weight:500;font-size:17px;color:var(--ink-2);letter-spacing:.01em}
+.carpet{height:3px;border:0;box-shadow:none;background:var(--wine)}
+
+/* навигация — подчёркивание, а не «таблетки» */
+.bar{background:rgba(255,253,251,.97);border-bottom:1px solid var(--line)}
+.tab{border-radius:0;padding:7px 2px;margin-right:16px;font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent}
+.tab.on{background:none;color:var(--ink);border-bottom-color:var(--wine);box-shadow:none}
+.tab.hl{color:var(--wine)}
+.tab.hl.on{background:none;color:var(--ink)}
+.tabs{gap:0}
+.chip{border-radius:8px;border-color:var(--line);background:var(--card);font-weight:600;color:var(--ink-2)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:none}
+.flabel{color:var(--muted);font-weight:700}
+.seg{border-radius:8px;border-color:var(--line)}
+.seg button.on{background:var(--ink);color:#fff}
+
+/* разделы — чёрный капс, как в меню */
+h2{font-family:var(--display);font-weight:800;font-size:23px;line-height:1.1;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);margin-bottom:6px}
+.hint{font-family:var(--script);font-style:italic;font-size:15px;color:var(--ink-2);margin:0 0 14px}
+.hint .now{font-style:normal;font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--wine)}
+.hint .now.off{color:var(--muted)}
+section{padding:22px 16px 6px}
+
+/* карточка блюда — белая, с песочной подложкой под текстом */
+.card{background:var(--paper-2);border:1px solid var(--line);border-radius:16px;box-shadow:none}
+.card .in{background:var(--paper-2);padding:14px 16px 16px}
+.ph img{aspect-ratio:16/10;background:var(--paper-2)}
+.name{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.price{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.02em}
+.price small{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.desc{font-size:13px;color:var(--ink-2);margin-top:5px}
+.weight{font-size:11.5px;color:var(--muted)}
+.tg{background:#fff;color:var(--ink);font-weight:700;letter-spacing:.02em;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.tg.new{background:var(--new);color:#fff}
+.tg.hit{color:#d45b5e}
+.tg.veg{color:#4b7a3f}
+.tg.hands{color:var(--ink-2)}
+.add{background:var(--ink);box-shadow:0 6px 16px rgba(26,26,26,.28),0 0 0 3px var(--paper-2)}
+.add .q{background:var(--wine)}
+
+/* КБЖУ — тихая строка цифр, а не цветные плитки */
+.kbju{gap:14px;margin-top:12px;padding-top:11px;border-top:1px solid rgba(26,26,26,.1);align-items:flex-end}
+.kcal{background:none;color:var(--ink);font-family:var(--display);font-weight:800;font-size:19px;padding:0;text-align:left}
+.kcal span{color:var(--muted);font-size:9px;letter-spacing:.1em;opacity:1}
+.m{background:none;padding:0;font-size:15px;font-weight:700;color:var(--ink)}
+.m span{color:var(--muted)}
+.m i{background:rgba(26,26,26,.1);height:2px}
+
+/* блюда без фото — песочная карточка с названием, как строка в бумажном меню */
+.card.flat{background:var(--paper-2)}
+.card.flat .in{position:relative;padding:15px 58px 16px 16px}
+.card.flat .add{right:14px;bottom:14px;box-shadow:0 4px 12px rgba(26,26,26,.25),0 0 0 3px var(--paper-2)}
+.tags.flat{position:static;margin-bottom:8px}
+.tags.flat .tg{box-shadow:none;border:1px solid var(--line)}
+.noph{aspect-ratio:16/7;background:var(--paper-2);border-bottom:1px solid var(--line)}
+.noph::after{display:none}
+.noph span{color:var(--ink);font-family:var(--display);font-weight:800;font-size:17px;text-shadow:none;letter-spacing:-.01em}
+
+/* верхние плашки */
+.spec{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:none}
+.spec.lunch{background:var(--paper-2);border-color:var(--line)}
+.sp-ic{background:none;color:var(--wine);width:38px;height:38px;border-radius:0}
+.spec.lunch .sp-ic{background:none;color:#c2762e}
+#specials .spec:not(.lunch){background:var(--card);border-color:var(--line)}
+#specials .spec:not(.lunch) .sp-ic{background:none;color:var(--wine)}
+.sp-ic svg{width:30px;height:30px}
+.spec b{font-size:15px;font-weight:800}
+.live{background:var(--card);border:1px solid var(--line);color:var(--muted);font-weight:700}
+.live.on{background:var(--wine);border-color:var(--wine);color:#fff}
+
+/* кнопки */
+.btn{background:var(--wine);border-radius:10px;box-shadow:none;font-weight:700;letter-spacing:.01em}
+.btn.red{background:var(--ink)}
+.btn.ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--line);color:var(--ink)}
+.tablebar{background:var(--ink);border-radius:14px}
+.tablebar .tb-t{color:var(--muted)}
+.tablebar .tb-t b{font-family:var(--display);font-weight:800}
+.tablebar button{background:rgba(255,255,255,.14);border-radius:8px}
+.tablebar button.hot{background:var(--wine)}
+#cartbar{background:var(--ink);border-radius:14px}
+#cartbar .btn{background:var(--wine);border-radius:9px}
+#otoast{background:var(--ink);border-radius:12px}
+#otoast b{color:var(--pink)}
+.slot{background:var(--card);border-color:var(--line);border-radius:10px;font-family:var(--display)}
+.slot.on{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:none}
+
+/* шторка и демо-панели */
+.sheet,.welcome,.final{background:var(--paper)}
+.sheet h3,.final h2,.offer h2,.legal h2{font-family:var(--display);font-weight:800;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.sheet h3{font-size:24px;text-transform:uppercase;letter-spacing:.01em}
+.sheet .kick,.wsub{color:var(--wine);font-weight:800}
+.demo{border-style:solid;border-color:var(--line);background:var(--paper-2);color:var(--ink-2);border-radius:10px}
+.replay{background:var(--ink);border-radius:8px}
+.snd{border-color:var(--line);color:var(--ink-2);background:var(--card)}
+#stages{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 50px -30px rgba(26,26,26,.7)}
+#stages::before{display:none}
+#stages h3{color:var(--ink);letter-spacing:.1em}
+.finalBtn{border-radius:10px}
+.finalBtn.ready{background:var(--wine)}
+#achv{border-color:var(--line);border-radius:14px;background:var(--paper)}
+#achv .a1{color:var(--wine)}
+
+/* тарифы */
+.offer{background:var(--paper)}
+.offer::before{height:4px;background:var(--wine)}
+.plan{background:var(--card);border-color:var(--line);border-radius:16px}
+.plan.free{background:var(--ink);box-shadow:none}
+.plan.free .pp small{color:#cfd8d6}
+.plan li::before{color:var(--red)}
+.pl-tag{color:var(--wine);border-radius:6px}
+.pl-tag.gold{background:var(--gold);color:#fff}
+.pp{font-family:var(--display);border-top-color:var(--line)}
+.vs2 .will{background:var(--ink)}
+
+
+/* конструктор завтраков — набран как страница их меню: песочное поле, строки, цена справа */
+.ct-box{background:var(--paper-2);border:1px solid var(--line);border-radius:20px;padding:18px 18px 16px;box-shadow:none}
+.ct-intro{color:var(--ink-2);font-family:var(--script);font-style:italic;font-size:16px;text-align:left;padding:4px 0 16px}
+.ct-cols{display:grid;grid-template-columns:1fr;gap:0}
+.ct-col{background:none;border-radius:0;padding:12px 0;border-top:1px solid rgba(26,26,26,.1);display:block}
+.ct-cols > .ct-col:first-child{border-top:0;padding-top:4px}
+.ct-cols > .ct-col:nth-child(n){background:none}
+.ct-col small{display:block;float:none;font-family:var(--display);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-align:left;margin:0 0 8px}
+.ct-gp{float:right;margin:-26px 0 0;font-family:var(--display);font-weight:800;font-size:13px;color:var(--ink)}
+.ct-items{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+.fw{display:flex;align-items:flex-start;gap:9px;font-family:var(--sans);font-size:13.5px;font-weight:600;line-height:1.3;color:var(--ink-2);background:none;padding:6px 2px;border-radius:0}
+.fw::before{content:"";flex:none;width:15px;height:15px;margin-top:1px;border-radius:50%;border:1.5px solid rgba(26,26,26,.28);transition:background .2s,border-color .2s}
+.fw:hover{background:none;color:var(--ink)}
+.fw.on{background:none;color:var(--ink);font-weight:800;transform:none;box-shadow:none}
+.fw.on::before{background:var(--wine) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/11px no-repeat;border-color:var(--wine)}
+.fw.on::after{content:none}
+.ct-res{grid-template-columns:168px 1fr;gap:18px;margin:0 0 4px;padding:10px 0 13px;
+  border-top:0;border-bottom:1px solid rgba(26,26,26,.12);align-items:center;
+  position:sticky;top:var(--barh, 104px);z-index:4;background:var(--paper-2);
+  box-shadow:0 -20px 0 var(--paper-2),0 12px 14px -13px rgba(26,26,26,.3)}
+.ct-num{font-family:var(--sans);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.ct-num b{font-family:var(--display);font-size:13px;color:var(--ink)}
+.ct-sel{font-family:var(--script);font-style:italic;font-weight:500;font-size:19px;color:var(--ink);line-height:1.25;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.ct-sel .ph0{font-family:var(--sans);font-style:normal;font-size:13px;color:var(--muted)}
+.ct-price{font-size:12px;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+.ct-price b{font-family:var(--display);font-size:24px;color:var(--ink)}
+.ct-ps{background:none;border-top:1px dashed rgba(26,26,26,.18);border-radius:0;padding:12px 0 0;font-size:12px;color:var(--muted)}
+.ct-tag{background:#fff;border:1px solid var(--line);box-shadow:none;font-family:var(--script);font-style:italic;font-size:15px;color:var(--ink)}
+.ct-tag::before{background:var(--wine)}
+@media (max-width:560px){
+  .ct-box{padding:14px 14px 12px}
+  .ct-items{grid-template-columns:1fr}
+  .ct-res{grid-template-columns:128px 1fr;gap:14px}
+  .ct-tag{left:78px;width:62px;font-size:13px}
+  .ct-sel{font-size:16px;-webkit-line-clamp:2}
+}
+
+
+/* третий тариф был тёмно-бордовым от прежней темы — делаем его светлым, выделяет его золотая плашка */
+.plan.top{background:var(--card);border-color:var(--gold)}
+.plan.top h3,.plan.top .pp{color:var(--ink)}
+.plan.top li{color:var(--ink-2)}
+.plan.top .pp{border-color:var(--line)}
+.plan.top .pp small{color:var(--muted)}
+.plan.top .pl-legal{color:var(--ink-2);background:var(--paper-2);border-color:var(--line)}
+.plan.top .pl-legal svg,.plan.top .pl-legal i{color:var(--wine)}
+.plan.free h3,.plan.free .pp{color:#fff}
+.plan.free li{color:#e6e3dd}
+.plan.free li::before{color:var(--pink)}
+
+/* ленту-паттерн заменяем ровной линией: в их полиграфии нет «обоев» */
+.welcome::before,.concept::before,.offer::before{height:3px;background:var(--wine)}
+.welcome{border-radius:20px}
+.welcome h2{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.01em}
+.welcome p{color:var(--ink-2)}
+.pc-note{background:var(--paper-2);color:var(--ink-2);border-radius:8px}
+.pc-note svg{color:var(--wine)}
+
+/* ---- компактная строка меню: миниатюра слева, всё о блюде справа ---- */
+.card{position:relative;display:flex;gap:13px;align-items:flex-start;padding:12px;margin-bottom:10px;border-radius:16px;overflow:visible;background-color:var(--paper-2)}
+.card .ph{flex:none;width:104px;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 2px 10px -4px rgba(26,26,26,.35)}
+.card .ph img{display:block;width:104px;height:104px;aspect-ratio:1;object-fit:cover}
+.card .in{flex:1;min-width:0;background:none;padding:0 42px 0 0}
+.card.flat .in{padding:1px 42px 2px 2px}
+.card .row{align-items:baseline;gap:10px}
+.card .name{font-size:15px;line-height:1.25}
+.card .price{font-size:19px}
+.card .desc{font-size:12.5px;line-height:1.4;margin-top:3px;color:var(--ink-2);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .foot{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:7px}
+.card .facts{font-size:11px;color:var(--muted);letter-spacing:.01em;white-space:nowrap}
+.card .tg{position:static;font-size:9.5px;padding:2px 7px;box-shadow:none;border:1px solid var(--line)}
+.card .add{position:absolute;right:10px;bottom:10px;width:34px;height:34px;line-height:34px;font-size:21px;box-shadow:0 4px 10px rgba(26,26,26,.2),0 0 0 3px var(--paper-2)}
+.card .add .q{right:-5px;top:-5px;min-width:17px;height:17px;line-height:17px;font-size:10px}
+.card .in .kbju{display:none}
+@media (max-width:420px){
+  .card .ph,.card .ph img{width:86px}
+  .card .ph img{height:86px}
+  .card .desc{-webkit-line-clamp:2;font-size:12px}
+  .card .facts{font-size:10.5px;white-space:normal}
+  .card .price{font-size:17px}
+}
+
+
+/* ---- картинки: фон сцены, бумага плашек, узор листьев, иллюстрация конструктора ---- */
+.stage{background:
+  linear-gradient(180deg, rgba(255,255,255,.1), rgba(10,30,28,.22)),
+  url("img/scene-bg.jpg") center/cover no-repeat, #2a5450;
+  background-blend-mode:screen, normal, normal}
+.stage::before{content:"";position:absolute;inset:0;background:url("img/leaves.png") center/320px repeat;opacity:.1;pointer-events:none}
+.card,.ct-box,.spec.lunch{background-image:url("img/paper.jpg");background-size:420px;background-blend-mode:multiply}
+.card .in{background:none}
+.ct-box{background-color:var(--paper-2)}
+.ct-art{margin:-18px -18px 14px;border-radius:19px 19px 0 0;overflow:hidden;background:var(--paper-2)}
+.ct-art img{display:block;width:100%;height:158px;object-fit:cover;object-position:center 50%}
+@media (max-width:560px){.ct-art{margin:-14px -14px 12px}.ct-art img{height:120px}}
+.ticket::after{background-image:url("img/leaves.png");background-size:260px;opacity:.12}
+
+.qr-empty{display:grid;place-items:center;text-align:center;background:var(--paper-2);border:1px dashed var(--line);border-radius:10px;color:var(--muted);font-size:10px;line-height:1.3;padding:8px;min-height:80px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <img class="logo" src="../img/logo.jpg" alt="Любимое место">
+    <div>
+      <h1 class="brand">Любимое место<i>.</i></h1>
+      <div class="meta"><b>еда · кофе · десерты</b>кофейня-кондитерская · Советская, 95В · ежедневно 7:30–22:00</div>
+    </div>
+  </header>
+  <div class="carpet" aria-hidden="true"></div>
+  
+  <div class="tablebar" id="tablebar">
+    <div class="tb-t">Советская, 95В<b id="tbName">Предзаказ ко времени</b></div>
+    <button class="hot" onclick="openBoxes()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.4 8.2 12 4l8.6 4.2v7.6L12 20l-8.6-4.2Z"/><path d="M3.4 8.2 12 12.4l8.6-4.2M12 12.4V20"/></svg> Фудбоксы</button>
+  </div>
+
+  <div class="bar">
+    <nav class="tabs" id="tabs"></nav>
+    <div class="filters" id="filters">
+      <span class="flabel"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18l-7 8.5V19l-4 2v-7.5z"/></svg>Фильтры</span>
+      <button class="chip" data-f="light">до 450 ккал</button>
+      <button class="chip" data-f="protein">белок от 25 г</button>
+      <button class="chip" data-f="veg">без мяса</button>
+      <button class="chip" data-f="new">новинки</button>
+    </div>
+    <div class="sub">
+      <div class="unit">КБЖУ на
+        <div class="seg" id="unit" role="group" aria-label="КБЖУ на"><button class="on" data-u="0">порцию</button><button data-u="1">100 г</button></div>
+      </div>
+      <div class="status" id="status"><span id="count"></span><button id="reset">Сбросить</button></div>
+    </div>
+  </div>
+
+  <div id="specials"></div>
+  <main id="menu"></main>
+
+  <footer>
+    <div class="slogan">Еда, кофе и десерты.</div>
+    <p class="mur" id="murText"></p>
+    <div>Бобруйск, Советская, 95В · ежедневно 7:30–22:00<br>ТЦ «Абсолют», Минская, 133 · с 8:00<br><a href="https://www.instagram.com/lybimoemesto/" target="_blank" rel="noopener">@lybimoemesto</a> · +375 29 651-00-77</div>
+    <div class="fine">Цены в BYN. КБЖУ — на порцию, если не выбрано «100 г»; примерные, точные считаются по техкартам.</div>
+  </footer>
+</div>
+
+<div class="veil" id="veil"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<div id="cartbar"><div class="cb-t" id="cbText"></div><button class="btn" onclick="openCart()">Заказ →</button></div>
+<div id="otoast" role="status" aria-live="polite"><img src="../img/logo.jpg" alt=""><span id="otoastT"></span></div>
+
+
+
+<script>
+// Меню кафе «Любимое место» (Бобруйск) для демо. Собрано 27.10.2026.
+// Источник: «Актуальное» @lybimoemesto — МЕНЮ (обновлено за неделю до съёмки) и ЗАВТРАКИ; расшифровка —
+// исходники/меню-расшифровка.md, снимки страниц — исходники/insta/menu-*.jpg, zavtrak-*.jpg.
+// Названия, составы, цены и граммовки — их собственные, из меню.
+// Фото блюд — их собственные, из сторис «БЛЮДА», обрезаны без надписей (_инструменты/crop_photos.py).
+// КБЖУ (k, b, j, u — ккал, белки, жиры, углеводы на порцию) — ПРИМЕРНЫЕ, по типовым рецептам.
+// Боевые считаются по их техкартам — это платная услуга, в демо так и написано.
+// tags: new — новинка (NEW в их меню), hit — «рекомендуем» (♡ в их меню), veg — без мяса и рыбы, hands — можно руками.
+
+// ВНИМАНИЕ: фото с именем stock-* — стоковые (Unsplash), это НЕ блюда «Любимого места».
+// Поставлены там, где своих снимков нет; перед боевым запуском заменить на их собственные.
+window.FOOD = [
+{cat:'Завтраки', time:[7.5, 11], hint:'Ежедневно 7:30–11:00. В стоимость включён напиток: фильтр, эспрессо, американо, капучино, латте, чай или какао', items:[
+ {id:'z-american', n:'Американский завтрак', d:'Блинчики с жареным беконом и глазуньей. Можно на рисовой муке (+2).', p:24, w:290, g:1, k:720, b:28, j:44, u:52, img:'z-american'},
+ {id:'z-english', n:'Английский завтрак', d:'Сырники с жареным беконом, глазуньей, соусом и свежими овощами и зеленью.', p:24, w:340, g:1, k:780, b:34, j:46, u:56, img:'z-english'},
+ {id:'z-europe', n:'Европейский завтрак', d:'Омлет с брокколи, свежим перцем и сыром. Твёрдый сыр и фета.', p:24, w:420, g:1, k:560, b:30, j:38, u:24, tags:['veg'], img:'z-europe'},
+ {id:'z-norway', n:'Норвежский завтрак', d:'Скрэмбл с лососем, творожным сыром и свежими овощами и зеленью.', p:30, w:380, g:1, k:640, b:34, j:42, u:28, img:'z-norway'},
+ {id:'z-belgium', n:'Бельгийский завтрак', d:'Креветки с песто на картофельных вафлях и салат из свежих овощей и зелени с сыром Фета и яйцом.', p:27, w:265, g:1, k:580, b:28, j:34, u:38, img:'z-belgium'},
+ {id:'z-belarus', n:'Белорусский завтрак', d:'Говяжий язык с картофельными дольками, глазуньей, маринованным огурчиком, свежей зеленью и овощами.', p:25, w:345, g:1, k:700, b:36, j:40, u:44, img:'z-belarus'},
+ {id:'z-kasha-klen', n:'Кленовая рисовая каша', d:'С тыквой, кедровыми орешками и корицей.', p:14, w:310, g:1, k:420, b:8, j:12, u:70, tags:['veg', 'new'], img:'z-kasha-klen'},
+ {id:'z-kasha-ovs', n:'Пряная овсяная каша', d:'С пряным яблоком и грецкими орехами.', p:14, w:310, g:1, k:390, b:9, j:13, u:60, tags:['veg'], img:'z-kasha-ovs'},
+ {id:'z-kasha-ban', n:'Банановая рисовая каша', d:'С жареным бананом и лепестками миндаля.', p:14, w:360, g:1, k:450, b:8, j:12, u:78, tags:['veg'], img:'z-kasha-ban'},
+]},
+
+{cat:'Первое', hint:'Крафтовый хлеб (злаковый, купеческий) — 1.5 за 50 г', items:[
+ {id:'f-ramen', n:'Рамен с курицей', d:'Наваристый бульон, куриное филе, яйцо, брокколи, кунжут.', p:17, w:600, g:1, k:520, b:34, j:18, u:52, img:'ramen', tags:['hit']},
+ {id:'f-borsch', n:'Борщ с говядиной и сметаной', d:'Подаётся с тостами с творожным сыром и семенами тыквы и льна.', p:13, w:425, g:1, k:430, b:22, j:22, u:36, img:'stock-borsch'},
+ {id:'f-bulyon', n:'Бульон с куриным мясом и овощами', d:'Подаётся с крутонами.', p:10, w:430, g:1, k:240, b:20, j:9, u:18, img:'krem-sup'},
+ {id:'f-krem-grib', n:'Крем-суп дня: грибной', d:'С крутонами.', p:16, w:260, g:1, k:320, b:8, j:22, u:22, tags:['veg'], img:'stock-krem-grib'},
+ {id:'f-krem-syr', n:'Крем-суп дня: сырный', d:'С жареным беконом.', p:16, w:285, g:1, k:420, b:14, j:30, u:22, img:'krem-sup-syr'},
+ {id:'f-krem-tykva', n:'Крем-суп дня: тыквенный', d:'С креветками.', p:16, w:290, g:1, k:300, b:16, j:16, u:24, img:'krem-sup-tykva'},
+]},
+
+{cat:'Салаты', items:[
+ {id:'s-batat', n:'Тёплый салат с бататом и куриным мясом', d:'Сыр Фета, свежий перец, черри, шпинат, кедровые орехи, зелень салата, рукола, горчица, бальзамический соус.', p:26, w:280, g:1, k:480, b:30, j:26, u:34, img:'salat-batat'},
+ {id:'s-yazyk', n:'Пикантный салат с языком', d:'Говяжий язык, картофельные дольки, черри, мягкий сыр «Фета», огурец маринованный, рукола, шпинат, салат, заправка на основе оливкового масла. Содержит чеснок.', p:23, w:230, g:1, k:440, b:26, j:28, u:22, img:'salat-yazyk', tags:['hit']},
+ {id:'s-cezar-krev', n:'Цезарь с креветками', d:'Сыр Пармезан, черри, перепелиные яйца, листья салата, соус Цезарь, злаковые сухарики.', p:26, w:200, g:1, k:390, b:26, j:24, u:18, img:'cezar-krevetki'},
+ {id:'s-cezar-kur', n:'Цезарь с куриным филе', d:'Сыр Пармезан, черри, перепелиные яйца, листья салата, соус Цезарь, злаковые сухарики.', p:18, w:200, g:1, k:420, b:28, j:26, u:18, img:'cezar-kuritsa'},
+ {id:'s-greek', n:'По-гречески', d:'Огурец, томат, свежий перец, листья салата, сыр Фета, маслины, красный лук, фирменная заправка.', p:16, w:200, g:1, k:280, b:9, j:22, u:12, tags:['veg'], img:'salat-greek'},
+]},
+
+{cat:'Фирменные вафли', hint:'Картофельные или морковные. Можно на рисовой муке (+2)', items:[
+ {id:'v-yazyk', n:'Вафля с говяжьим языком', d:'С горчичным соусом и маринованным огурчиком.', p:28, w:320, g:1, k:660, b:34, j:38, u:44, tags:['hit'], img:'stock-vafla-yazyk'},
+ {id:'v-govyadina', n:'Вафля с рваной говядиной', d:'С овощами и кунжутно-ореховым соусом: брокколи, перец, цветная капуста.', p:28, w:355, g:1, k:680, b:36, j:36, u:50, tags:['new', 'hit'], img:'vafli-govyadina'},
+ {id:'v-krevetka', n:'Вафля с креветкой и глазуньей', d:'На гуакамоле и сливочном сыре-песто.', p:33, w:380, g:1, k:700, b:32, j:44, u:46, img:'vafli-krevetka', tags:['hit']},
+ {id:'v-losos', n:'Вафля с лососем малой соли', d:'Спаржа и яйцо-пашот под голландским соусом.', p:28, w:425, g:1, k:720, b:34, j:46, u:44, img:'vafli-losos', tags:['hit']},
+]},
+
+{cat:'Фирменные блюда', items:[
+ {id:'b-granddranik', n:'Гранд-драник из тыквы', d:'С лососем и сливочным сыром.', p:30, w:380, g:1, k:640, b:28, j:38, u:46, tags:['new'], img:'granddranik'},
+ {id:'b-yazyk', n:'Говяжий язык с овощами', d:'С запечёнными дольками.', p:32, w:430, g:1, k:690, b:40, j:36, u:52, img:'yazyk-ovoshchi'},
+ {id:'b-burger', n:'Сырниковый бургер', d:'С беконом и глазуньей. Содержит чесночный соус.', p:22, w:320, g:1, k:720, b:30, j:44, u:48, img:'syrnikovy-burger'},
+ {id:'b-syr-losos', n:'Сырники с лососем и гуакамоле', d:'Подаются со сметаной.', p:22, w:320, g:1, k:560, b:28, j:34, u:36, img:'syrniki-losos', tags:['hit']},
+ {id:'b-syr-bekon', n:'Сырники с беконом и яйцом пашот', d:'Под голландским соусом.', p:22, w:330, g:1, k:640, b:28, j:42, u:36, img:'syrniki-bekon-pashot'},
+]},
+
+{cat:'Драники', hint:'Можно добавить: глазунья или пашот — 3, сметана — 2, гуакамоле — 5, бекон — 8, лосось — 8, овощи и зелень — 5', items:[
+ {id:'d-classic', n:'Драники классические со сметаной', d:'Как дома, только ровнее.', p:17, w:270, g:1, k:480, b:10, j:28, u:46, tags:['veg'], img:'draniki-classic'},
+ {id:'d-bekon', n:'Драники с жареным беконом', d:'Шампиньоны и соус. Подаются со сметаной.', p:23, w:340, g:1, k:620, b:18, j:40, u:46, img:'draniki-bekon'},
+ {id:'d-losos', n:'Драники с лососем и яйцом пашот', d:'С соусом и зеленью.', p:23, w:330, g:1, k:600, b:26, j:36, u:42, img:'stock-dranik-losos'},
+]},
+
+{cat:'Боулы', items:[
+ {id:'bo-yazyk', n:'Тёплый боул с говяжьим языком', d:'Булгур/рис, мини-морковь, цветная капуста, брокколи, свежая зелень, черри, лук криспи.', p:24, w:360, g:1, k:520, b:30, j:20, u:54, img:'boul-yazyk'},
+ {id:'bo-batat', n:'Батат-боул с куриным филе', d:'Черри, огурец, рукола, брокколи, кунжут, семена тыквы, кукуруза, горчичный соус.', p:24, w:355, g:1, k:540, b:32, j:22, u:52, tags:['hit'], img:'boul-batat'},
+ {id:'bo-ostry', n:'Острый боул с креветками и гуакамоле', d:'Булгур/рис, бобы Эдамаме, овощное ассорти и острое масло.', p:27, w:310, g:1, k:510, b:26, j:24, u:48, img:'boul-ostry'},
+ {id:'bo-losos', n:'Боул с лососем и яйцом-пашот', d:'Булгур/рис, сыр Фета, чука, шпинат, черри, бобы Эдамаме, кукуруза.', p:23, w:345, g:1, k:560, b:28, j:26, u:50, img:'boul-losos'},
+ {id:'bo-govyadina', n:'Сытный боул с говядиной и бататом', d:'Булгур/рис, черри, свежий перец, шпинат, кукуруза.', p:28, w:350, g:1, k:600, b:34, j:24, u:58, tags:['hit'], img:'boul-govyadina'},
+]},
+
+{cat:'Паста и вок', items:[
+ {id:'p-carbonara', n:'Паста Карбонара', d:'Бавете, бекон, сливки, сыр Пармезан, сырой желток, чеснок.', p:21, w:340, g:1, k:720, b:28, j:38, u:66, img:'pasta-carbonara'},
+ {id:'p-alfredo', n:'Паста Альфредо', d:'Бавете, куриное филе, шампиньоны, сливочный соус.', p:20, w:350, g:1, k:680, b:32, j:30, u:70, tags:['new'], img:'pasta-alfredo'},
+ {id:'p-vok-krev', n:'ВОК лапша с креветками', d:'Со сладким перцем в кунжутно-ореховом соусе. Содержит чеснок и зелёный лук.', p:26, w:380, g:1, k:620, b:26, j:24, u:72, img:'stock-vok-krevetki'},
+ {id:'p-vok-gov', n:'ВОК лапша с говядиной', d:'Со сладким перцем в соевом соусе. Содержит чеснок, синий лук, мёд.', p:20, w:340, g:1, k:640, b:30, j:24, u:74, tags:['hit'], img:'vok'},
+]},
+
+{cat:'Снэк-бар', hint:'Можно руками', items:[
+ {id:'sn-losos', n:'Сэндвич с лососем', d:'Огурец и творожный сыр.', p:15, w:190, g:1, k:420, b:20, j:22, u:36, tags:['hands'], img:'sendvich-losos'},
+ {id:'sn-bekon', n:'Сэндвич с беконом', d:'Чесночный соус, сыр и маринованный огурец.', p:14, w:210, g:1, k:480, b:20, j:26, u:40, tags:['hands'], img:'sendvich-bekon'},
+ {id:'sn-batat', n:'Батат-фри с пармезаном', d:'Хрустящий снаружи, мягкий внутри.', p:13, w:160, g:1, k:380, b:8, j:18, u:46, tags:['veg', 'hands'], img:'stock-batat-fri'},
+ {id:'sn-dolki', n:'Картофельные дольки', d:'С румяной корочкой.', p:7, w:150, g:1, k:300, b:5, j:14, u:40, tags:['veg', 'hands'], img:'dolki'},
+ {id:'sn-sous', n:'Соус на выбор', d:'Чесночный, сырный, томатный, кисло-сладкий, горчичный.', p:2, w:50, g:1, k:120, b:1, j:12, u:3, tags:['veg'], img:'sousy'},
+]},
+
+{cat:'Блины', hint:'Сытные и сладкие. Можно на рисовой муке (+2)', items:[
+ {id:'bl-cezar', n:'Блин «Цезарь»', d:'С королевскими креветками и сыром Пармезан.', p:23, w:320, g:1, k:560, b:26, j:28, u:48, img:'blin-cezar'},
+ {id:'bl-bif', n:'Блин «Биф»', d:'С рваной говядиной, сыром чеддер и горчичным соусом.', p:19, w:275, g:1, k:580, b:28, j:30, u:46, img:'blin-bif'},
+ {id:'bl-fish', n:'Блин «Фиш»', d:'С лососем малой соли и гуакамоле.', p:19, w:240, g:1, k:520, b:22, j:30, u:40, img:'stock-blin-fish'},
+ {id:'bl-derevensky', n:'Блин «Деревенский»', d:'С беконом, шампиньонами, сыром и луком криспи.', p:24, w:360, g:1, k:660, b:26, j:38, u:52, img:'blin-derevensky'},
+ {id:'bl-azia', n:'Блин «Азия»', d:'С куриным мясом, шампиньонами и кунжутно-ореховым соусом.', p:21, w:340, g:1, k:600, b:30, j:26, u:54, tags:['hit'], img:'blin-azia'},
+ {id:'bl-tvorog', n:'Блинчики с творогом', d:'Со сметаной. С пряным яблоком и грецкими орехами или с вишнёвым конфи и миндальными лепестками.', p:17, w:280, g:1, k:520, b:18, j:22, u:60, tags:['new', 'veg'], img:'blin-tvorog'},
+]},
+
+{cat:'Сырники', hint:'На рисовой муке', items:[
+ {id:'sy-vanil', n:'Сырники с ванильным кремом и киви', d:'Нежные, с кремом и свежим киви.', p:18, w:280, g:1, k:470, b:22, j:18, u:52, img:'syrniki-vanil-kivi', tags:['veg']},
+ {id:'sy-yabloko', n:'Сырники с пряным яблоком', d:'С корицей и сметаной.', p:17, w:300, g:1, k:460, b:22, j:18, u:50, tags:['new', 'veg'], img:'syrniki-yabloko'},
+ {id:'sy-vishnya', n:'Сырники с вишнёвым конфи', d:'Миндальные лепестки и соус с семенами чиа.', p:18, w:310, g:1, k:490, b:22, j:20, u:54, img:'syrniki-vishnya', tags:['hit', 'veg']},
+ {id:'sy-classic', n:'Классические сырники со сметаной', d:'Те самые, с хрустящей корочкой.', p:16, w:240, g:1, k:430, b:22, j:18, u:44, tags:['veg'], img:'syrniki-classic'},
+ {id:'sy-bezlaktoz', n:'Безлактозные сырники', d:'С соусом с семенами чиа.', p:18, w:280, g:1, k:440, b:22, j:16, u:50, img:'syrniki-bezlaktoz', tags:['veg']},
+]},
+
+{cat:'Десерты', hint:'Мороженое с топпингом — 9. Добавки: шарик мороженого 3, фрукты 3, орехи 3, вишнёвое конфи 2', items:[
+ {id:'de-krambl', n:'Тёплый яблочный крамбл', d:'Со сливочным мороженым и корицей.', p:14, w:250, g:1, k:480, b:6, j:20, u:68, tags:['veg'], img:'krambl'},
+ {id:'de-vafla-vishnya', n:'Бельгийская вафля с вишнёвым конфи', d:'Мороженое и дроблёная фисташка. Классическая или творожная.', p:19, w:270, g:1, k:620, b:12, j:26, u:84, tags:['veg'], img:'vafla-vishnya'},
+ {id:'de-vafla-banan', n:'Бельгийская вафля с жареным бананом', d:'Семена чиа, солёная карамель.', p:19, w:300, g:1, k:660, b:12, j:26, u:92, tags:['veg'], img:'vafla-banan'},
+ {id:'de-brauni', n:'Тёплый шоколадный брауни', d:'С шариком сливочного мороженого.', p:18, w:130, g:1, k:520, b:8, j:28, u:62, tags:['veg'], img:'brauni'},
+]},
+
+{cat:'Детям', hint:'Для самых маленьких. Добавки: шоколадная паста 4, мороженое 3, фрукты 3, сметана 2', items:[
+ {id:'k-sup', n:'Baby-суп с фрикадельками', d:'Из индейки, с лапшой.', p:8, w:240, g:1, k:220, b:14, j:8, u:22, img:'stock-det-sup'},
+ {id:'k-kotletki', n:'Котлетки из индейки', d:'С картофельным пюре, рисом или булгуром.', p:15, w:280, g:1, k:420, b:26, j:16, u:42, img:'det-kotletki'},
+ {id:'k-spagetti', n:'Спагетти с сыром и овощами', d:'Можно добавить котлетки из индейки (2 шт) — 8.', p:7, w:230, g:1, k:340, b:12, j:10, u:50, tags:['veg'], img:'det-spagetti'},
+ {id:'k-yazyk', n:'Нежный говяжий язык', d:'С картофельным пюре, рисом или булгуром.', p:16, w:250, g:1, k:400, b:24, j:16, u:40, img:'stock-det-yazyk'},
+ {id:'k-omlet', n:'Воздушный омлетик', d:'Со свежими овощами.', p:8, w:200, g:1, k:240, b:14, j:16, u:6, tags:['veg'], img:'stock-det-omlet'},
+ {id:'k-naggetsy', n:'Куриные наггетсы', d:'7 шт с соусом на выбор. С картофельными дольками — 16.', p:9.5, w:170, g:1, k:380, b:18, j:20, u:30, tags:['hands'], img:'det-naggetsy'},
+ {id:'k-kasha', n:'Молочная овсяная каша', d:'С маслом.', p:7, w:240, g:1, k:260, b:8, j:9, u:38, tags:['veg'], img:'stock-det-kasha'},
+ {id:'k-blin-tvorog', n:'Нежный блинчик с творогом', d:'И сгущённым молоком.', p:12, w:230, g:1, k:420, b:14, j:14, u:58, tags:['veg'], img:'stock-det-blin'},
+ {id:'k-blin-shokolad', n:'Блинчик с шоколадной пастой и бананом', d:'Любимое детское.', p:13, w:230, g:1, k:450, b:9, j:16, u:66, tags:['veg'], img:'stock-det-shokolad'},
+]},
+];
+
+// Конструктор завтраков — их фишка из «Актуального»: гость собирает завтрак сам, 7:30–11:00.
+// Группы и цены — из их страницы «КОНСТРУКТОР ЗАВТРАКОВ».
+window.CTOR = {from:7.5, to:11, note:'+2 на альтернативном молоке (фундуковое, миндальное, кокосовое, безлактозное) и +2 на рисовой муке',
+ groups:[
+  {t:'Основа', p:6, req:1, items:[['Глазунья, 2 шт', 'glaz'], ['Омлет', 'omlet'], ['Скрэмбл', 'skrembl'], ['Пашот', 'pashot']]},
+  {t:'Белок', p:8, items:[['Лосось, 50 г', 'losos'], ['Жареный бекон, 50 г', 'bekon'], ['Королевские креветки, 50 г', 'krevetki'], ['Отварной говяжий язык, 50 г', 'yazyk']]},
+  {t:'Овощи', p:5, items:[['Черри, 40 г', 'cherri'], ['Овощное ассорти, 80 г', 'assorti'], ['Жареные овощи, 130 г', 'zharenye'], ['Гуакамоле, 50 г', 'guakamole']]},
+  {t:'Гарнир', p:6, items:[['Классический блин, 130 г', 'blin'], ['Овсяная каша, 210 г', 'kasha'], ['Рис или булгур, 130 г', 'ris'], ['Спагетти бавете, 150 г', 'spagetti']]},
+  {t:'Хлеб', p:1.5, items:[['Хлеб злаковый, 50 г', 'zlak'], ['Хлеб купеческий, 50 г', 'kupech'], ['Хлеб тостовый, 35 г', 'tost'], ['Круассан, 70 г — 5.5', 'kruassan', 5.5]]},
+  {t:'Добавки', p:2, items:[['Сметана, 50 г', 'smetana'], ['Соус на выбор, 50 г', 'sous'], ['Сыр на выбор, 50 г — 3', 'syr', 3], ['Шоколадная паста, 40 г — 4', 'pasta', 4]]},
+ ]};
+
+// Напитки. В списках: [название, объём, цена]. ❄ — холодный.
+window.DRINKS = [
+ {cat:'Кофе и матча', hint:'Актуальную линейку вкусов можно уточнить при заказе', groups:[
+  {t:'Кофейные айс-напитки', note:'350 мл', items:[['Айс-капучино / латте ❄', '350 мл', 8], ['Айс-фильтр кофе ❄', '350 мл', 5], ['Эспрессо-тоник классический ❄', '350 мл', 8], ['Бамбл: апельсин или вишня ❄', '350 мл', 8]]},
+  {t:'Айс-матча', note:'350 мл', items:[['Бамбл-матча на апельсиновом соке ❄', '350 мл', 10], ['Матча-тоник на швепсе ❄', '350 мл', 9], ['Ягодная матча-лимонад ❄', '350 мл', 10], ['Exotic-банан айс-матча|на кокосовом молоке и розовой матче', '350 мл', 14], ['Exotic-манго айс-матча|на кокосовом молоке и зелёной матче', '350 мл', 14]]},
+  {t:'Протеиновые напитки', note:'на безлактозном молоке +3', items:[['Протеиновый айс-кофе ❄', '350 мл', 10], ['Молочный протеиновый коктейль', '350 мл', 8]]},
+ ]},
+ {cat:'Лимонады и коктейли', hint:'Все холодные', groups:[
+  {t:'Лимонады', note:'350 мл · по 9 BYN', items:[['Арбузный ❄', '350 мл', 9], ['Ягодно-мятный ❄', '350 мл', 9], ['Мохито ❄', '350 мл', 9], ['Сицилия|апельсиновый сок, спрайт, манго, кокос, сок лимона', '350 мл', 9]]},
+  {t:'Молочные коктейли', note:'350 мл · по 8 BYN', items:[['Ванильный', '350 мл', 8], ['Шоколадный', '350 мл', 8], ['Клубничный', '350 мл', 8], ['Попкорн', '350 мл', 8]]},
+  {t:'Смузи', note:'300 мл · по 15 BYN', items:[['Вишнёво-мятный|вишня, банан, апельсиновый сок, сироп мяты', '300 мл', 15], ['Зелёный|киви, сельдерей, яблоко, огурец, семена льна', '300 мл', 15], ['Ягодно-фруктовый|банан, киви, яблоко, малина', '300 мл', 15], ['Вишнёвый с чиа|вишня, банан, семена чиа, молоко', '300 мл', 15]]},
+ ]},
+ {cat:'Соки и вода', groups:[
+  {t:'Свежевыжатый сок', note:'200 мл · по 9 BYN', items:[['Яблоко / апельсин', '200 мл', 9], ['Яблоко-морковь', '200 мл', 9], ['Апельсин-яблоко', '200 мл', 9], ['Яблоко-сельдерей', '200 мл', 9], ['Апельсин-морковь', '200 мл', 9], ['Яблоко-морковь-сельдерей', '200 мл', 9]]},
+  {t:'Напитки', items:[['Бонаква газ / негаз', '500 мл', 3.5], ['Кола, спрайт, фанта', '500 мл', 4.5], ['Сок в ассортименте|яблоко, апельсин, вишня, томат', '200 мл', 5], ['Напиток Комбуча', '350 мл', 8]]},
+ ]},
+ {cat:'Чайная карта', hint:'Чашка 300 мл — 3.5 · чайник 800 мл — 8.5', groups:[
+  {t:'Чёрный чай', items:[['Дворцовый Пуэр', '', ''], ['Бергамот|индийский чай, плоды шиповника, василёк', '', ''], ['Английский завтрак|классическая смесь чёрных чаёв', '', ''], ['Екатерина Великая|чёрный чай, цукаты ананаса, каркаде, лепестки розы', '', ''], ['Иван-чай|чабрец, иван-чай', '', ''], ['Масала|имбирь, кардамон, корица, гвоздика, фенхель, душистый перец', '', ''], ['Фруктовая фантазия|индийский чай, ассорти яблок и фруктов', '', ''], ['Искушение|малина, ежевика, клубника, лимон, смородина, клюква, апельсин', '', '']]},
+  {t:'Зелёный чай и улун', items:[['Мао Фэн|китайский крупнолистовой', '', ''], ['Ягодно-цветочный|ежевика, ананас, годжи, роза, жасмин', '', ''], ['Мулен Руж|зелёные чаи, ананас, папайя, яблоко, роза, календула', '', ''], ['Манговый улун|цукаты папайи, лепестки календулы', '', ''], ['Молочный улун|сливочно-молочный вкус с нотами карамели', '', ''], ['Барбарис|ягоды годжи, лепестки сафлора', '', '']]},
+  {t:'Фруктовый и травяной', items:[['Императорский сад|каркаде, ананас, яблоко, малина, смородина, шиповник', '', ''], ['Глинтвейн|кардамон, бадьян, гвоздика, апельсин', '', ''], ['Жареный ананас|кусочки яблок, кокосовые чипсы, ананас', '', ''], ['Манго-цитрус|ананас, папайя, яблоко, манго, мандарин, физалис', '', ''], ['Успокаивающий|лаванда, ежевика, пустырник, мелисса, ромашка, шалфей', '', ''], ['Имбирная ягода|имбирь, яблоко, корица, солодка, малина, клубника', '', ''], ['Облепиха-куркума|облепиха, морковь, шиповник, лемонграсс, вербена', '', ''], ['Ройбос классический|не содержит кофеина', '', ''], ['Гречишный пряный|корица, апельсин, малина, розовый перец, василёк', '', ''], ['Малина-мята|яблоко, лесная малина, каркаде, мята, мелисса', '', ''], ['Фэн Шуй|яблоко, драконий фрукт, годжи, лимонная трава, земляника', '', '']]},
+ ]},
+];
+
+window.INFO = {
+ addr:'Бобруйск, Советская, 95В',
+ addr2:'ТЦ «Абсолют», Минская, 133',
+ hours:'Ежедневно 7:30–22:00 · в «Абсолюте» с 8:00',
+ insta:'lybimoemesto',
+ phone:'+375 29 651-00-77',
+ allergy:'Если у вас пищевая аллергия, пожалуйста, скажите об этом при заказе — чаще всего мы можем убрать аллерген из блюда.',
+};
+</script>
+<script>
+const P = new URLSearchParams(location.search);
+// Предзаказ ко времени включён всегда: у «Любимого места» заказ делают у кассы, и очередь в час пик —
+// главная боль по отзывам. Гость собирает заказ в телефоне и приходит к готовому.
+const ORDER = true, EMBED = P.has('embed');
+if (ORDER) document.documentElement.classList.add('order');
+if (EMBED) document.documentElement.classList.add('embed');
+
+const S = {f:new Set(), per100:false};
+const $ = s => document.querySelector(s);
+const fmt = x => (Math.round(x*10)/10).toString().replace('.', ',');
+const val = (it, key) => S.per100 ? it[key]*100/it.w : it[key];
+const slug = s => 'c-' + s.toLowerCase().replace(/[^a-zа-яё0-9]+/g, '-').replace(/^-|-$/g, '');
+const imgSrc = n => (window.IMG && IMG[n]) || window.IMGDIR + n + '.jpg';
+// кадры, вырезанные со страниц их меню: в оригинале 250–400 px, крупно показывать нельзя
+const SMALLIMG = new Set(['z-kasha-klen', 'z-kasha-ban', 'granddranik', 'krem-sup-tykva',
+  'blin-cezar', 'krambl', 'vafla-banan', 'det-spagetti', 'det-naggetsy']);
+const plural = (n, f) => f[(n%10==1 && n%100!=11) ? 0 : (n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20)) ? 1 : 2];
+const MAXM = {b:40, j:50, u:80};
+const TAGN = {new:'новинка', hit:'♡ рекомендуем', veg:'без мяса', hands:'можно руками'};
+let onAct = () => {};  // демо-версия подменяет: засчитывает этапы
+let SHOWACH = false;    // демо-версия включает: ачивки и подсказки
+
+// всё, что можно заказать: блюда и строки из карты напитков
+const ITEMS = {};
+FOOD.forEach(s => s.items.forEach(it => ITEMS[it.id] = it));
+const ROWID = new Map();   // строка барного меню -> id
+DRINKS.forEach((sec, si) => sec.groups.forEach((g, gi) => g.items.forEach((row, ri) => {
+  const p = parseFloat(String(row[2]).replace(',', '.'));
+  if (isNaN(p) || String(row[2]).startsWith('+')) return;   // добавки («+2») отдельно не заказывают
+  const id = `d-${si}-${gi}-${ri}`; ROWID.set(row, id);
+  ITEMS[id] = {id, n: row[0].split('|')[0].replace(/\s*[♡❄🌶]/gu, ''), p, v: row[1]};
+})));
+
+// время в Минске: завтраки, обед и «сейчас действует»
+function minsk(){
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-US', {timeZone:'Europe/Minsk', hour:'numeric', minute:'numeric', weekday:'short', hourCycle:'h23'})
+    .formatToParts(new Date()).map(x => [x.type, x.value]));
+  return {h: (+p.hour % 24) + p.minute / 60, day: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.weekday)};
+}
+
+const FILTERS = {light: it => it.k <= 450, protein: it => it.b >= 25, veg: it => (it.tags || []).includes('veg'), new: it => (it.tags || []).includes('new'), hit: it => (it.tags || []).includes('hit')};
+const pass = it => [...S.f].every(f => FILTERS[f](it));
+
+function kbjuHTML(it){
+  const m = (key, label, color) => `<div class="m"><span>${label}</span>${fmt(val(it, key))}<i><b style="width:${Math.min(100, it[key]/MAXM[key]*100)}%;background:${color}"></b></i></div>`;
+  return `<div class="kbju"><div class="kcal">${Math.round(val(it, 'k'))}<span>ККАЛ</span></div>${m('b', 'белки', 'var(--b)')}${m('j', 'жиры', 'var(--j)')}${m('u', 'углев.', 'var(--u)')}</div>`;
+}
+const priceHTML = it => `<div class="price">${fmt(it.p)} <small>BYN</small></div>`;
+const addBtn = id => ORDER ? `<button class="add" data-add="${id}" aria-label="Добавить в заказ">+${cart[id] ? `<span class="q">${cart[id]}</span>` : ''}</button>` : '';
+
+function cardHTML(it){
+  const tags = (it.tags || []).map(t => `<span class="tg ${t}">${TAGN[t]}</span>`).join('');
+  const pic = it.img ? `<div class="ph"><img src="${imgSrc(it.img)}" alt="${it.n}" loading="lazy"></div>` : '';
+  return `<div class="card${it.img ? '' : ' flat'}" role="button" tabindex="0" data-id="${it.id}">
+    ${pic}
+    <div class="in">
+      <div class="row"><div class="name">${it.n}${it.sub ? `<em>${it.sub}</em>` : ''}</div>${priceHTML(it)}</div>
+      <div class="desc">${it.d}</div>
+      <div class="foot"><span class="facts">${it.w} г · ${Math.round(val(it, 'k'))} ккал · Б ${fmt(val(it, 'b'))} · Ж ${fmt(val(it, 'j'))} · У ${fmt(val(it, 'u'))}</span>${tags}</div>
+    </div>
+    ${addBtn(it.id)}</div>`;
+}
+
+// чашка кофе на панели этапов: наполняется с каждым пройденным этапом
+const CUPBODY = 'M22 18 H98 L90 74 C 88 86, 78 94, 60 94 C 42 94, 32 86, 30 74 Z';
+const cupSVG = (id, layers) => `<svg viewBox="0 0 120 114" aria-hidden="true"><defs><clipPath id="${id}"><path d="${CUPBODY}"/></clipPath></defs>
+  <ellipse cx="60" cy="101" rx="45" ry="8.5" fill="#fff" fill-opacity=".8" stroke="#2b5d55" stroke-width="2.2"/>
+  <ellipse cx="60" cy="101" rx="30" ry="5" fill="none" stroke="#cfe0dc" stroke-width="1.6"/>
+  <path d="${CUPBODY}" fill="#fff" fill-opacity=".6"/><g clip-path="url(#${id})">${layers}</g>
+  <path d="${CUPBODY}" fill="none" stroke="#2b5d55" stroke-width="2.6" stroke-linejoin="round"/>
+  <ellipse cx="60" cy="18" rx="38" ry="7" fill="#fff" fill-opacity=".9" stroke="#2b5d55" stroke-width="2.4"/></svg>`;
+
+function drinksHTML(sec, si){
+  let h = `<section id="${slug(sec.cat)}"><h2>${sec.cat}</h2>`;
+  if (sec.hint) h += sec.hint.startsWith('Рекомендация') ? `<div class="reco"><img src="${imgSrc('logo')}" alt="">${sec.hint}</div>` : `<div class="hint">${sec.hint}</div>`;
+  sec.groups.forEach(g => {
+    h += `<div class="list">${g.t ? `<h3>${g.t}${g.note ? `<small>${g.note}</small>` : ''}</h3>` : ''}` + g.items.map(row => {
+      const [nm, sub] = row[0].split('|'), id = ROWID.get(row);
+      return `<div class="li"><div class="n">${nm}${sub ? `<em>${sub}</em>` : ''}</div><div class="v">${row[1]}</div><div class="p">${row[2]}</div>${id ? addBtn(id) : ''}</div>`;
+    }).join('') + `</div>`;
+  });
+  return h + `</section>`;
+}
+
+// ---------- конструктор завтраков (их фишка: «собери свой завтрак сам», 7:30–11:00) ----------
+const CT = {sel:{}};
+const ctPrice = (g, it) => (it[2] != null ? it[2] : g.p);
+const PLATE = [[50, 28], [69, 39], [69, 61], [50, 72], [31, 61], [31, 39]];   // шесть мест по кругу, left/top в % от тарелки
+// картинка ингредиента: img/ing-<ключ>.png; ключи заданы в menu-data.js вторым элементом позиции
+const pngSrc = f => (window.PNG && PNG[f]) || window.IMGDIR + f;
+const ingSrc = key => pngSrc('ing-' + key + '.png');
+function ctorHTML(){
+  const spots = CTOR.groups.map((g, i) =>
+    `<div class="ing" id="ctL${i}" style="left:${PLATE[i][0]}%;top:${PLATE[i][1]}%"><img alt="" onerror="this.remove()"></div>`).join('');
+  return `<section id="c-ctor"><h2>Конструктор завтраков</h2><div class="hint">Собери свой завтрак сам · ежедневно 7:30–11:00</div>
+  <div class="ct-box">
+    <div class="ct-art"><img src="${window.IMGDIR}ctor-art.jpg" alt="" loading="lazy"></div>
+    <div class="ct-top"><div class="ct-intro"><span class="ct-short">Соберите завтрак ♥</span></div></div>
+    <div class="ct-res">
+      <div class="ct-glass">
+        <div class="ct-plate">
+          <img class="ct-dish" src="${pngSrc('plate.png')}" alt="" loading="lazy">
+          ${spots}
+        </div>
+        <div class="ct-tag" id="ctTag"></div>
+      </div>
+      <div>
+        <div class="ct-num">Выбрано: <b id="ctNum">0</b> из ${CTOR.groups.length}</div>
+        <div class="ct-sel" id="ctSel"><span class="ph0">выберите, из чего собрать завтрак</span></div>
+        <div class="ct-price">Итого <b id="ctSum">0</b> BYN</div>
+        <button class="btn red small" id="ctGo" disabled>Добавить в предзаказ</button>
+      </div>
+    </div>
+    <div class="ct-cols">${CTOR.groups.map((g, c) => `<div class="ct-col"><small>${g.t}</small><div class="ct-gp">${fmt(g.p)} BYN</div><div class="ct-items">${g.items.map((it, i) => `<button class="fw" data-c="${c}" data-i="${i}">${it[0].split(' — ')[0]}</button>`).join('')}</div></div>`).join('')}</div>
+    <div class="ct-ps">${CTOR.note}. Напиток в готовых завтраках уже включён. <b>Как это работает у вас:</b> гость собирает завтрак заранее, а на кухню приходит готовый состав — не нужно переспрашивать у кассы.</div>
+  </div></section>`;
+}
+const ctChosen = () => Object.entries(CT.sel).filter(([, i]) => i != null).map(([c, i]) => [CTOR.groups[+c], CTOR.groups[+c].items[i]]);
+const ctSum = () => ctChosen().reduce((a, [g, it]) => a + ctPrice(g, it), 0);
+function ctPaint(){
+  const chosen = ctChosen();
+  document.querySelectorAll('.fw').forEach(b => b.classList.toggle('on', CT.sel[b.dataset.c] === +b.dataset.i));
+  CTOR.groups.forEach((g, c) => {
+    const l = $('#ctL' + c); if (!l) return;
+    const i = CT.sel[c];
+    l.classList.toggle('on', i != null);
+    const img = l.querySelector('img');
+    if (i != null && img) { const key = g.items[i][1]; if (key && img.getAttribute('data-k') !== key) { img.setAttribute('data-k', key); img.src = ingSrc(key); } }
+  });
+  const names = chosen.map(([, it]) => it[0].split(' — ')[0]);
+  $('#ctSel').innerHTML = names.length ? names.join(' · ') : '<span class="ph0">выберите, из чего собрать завтрак</span>';
+  $('#ctNum').textContent = names.length;
+  $('#ctSum').textContent = fmt(ctSum());
+  const tag = $('#ctTag'); tag.classList.toggle('on', names.length > 0);
+  tag.innerHTML = 'свой<br>завтрак' + (names.length >= 2 ? '<br>♥' : '');
+  $('#ctGo').disabled = names.length < 2;
+}
+function ctBind(){
+  const box = $('#c-ctor'); if (!box) return;
+  box.addEventListener('click', e => {
+    const w = e.target.closest('.fw');
+    if (w) { const c = w.dataset.c, i = +w.dataset.i, was = ctChosen().length;
+      CT.sel[c] = CT.sel[c] === i ? null : i; ctPaint(); sfx('pour');
+      if (was < 2 && ctChosen().length >= 2) { onAct(2); ach('ctor'); } return; }
+    if (e.target.closest('#ctGo')) {
+      const chosen = ctChosen(); if (chosen.length < 2) return;
+      const id = 'bf-' + Date.now();
+      addToCart(id, {id, n: 'Свой завтрак', sub: chosen.map(([, it]) => it[0].split(' — ')[0]).join(' · '), p: ctSum(),
+        k: 120 * chosen.length, w: 60 * chosen.length});
+      CT.sel = {}; ctPaint();
+    }
+  });
+  ctPaint();
+}
+
+// завтраки и предзаказ — плашки над меню
+function specialsHTML(){
+  const t = minsk(), on = t.h >= 7.5 && t.h < 11;
+  const label = on ? 'сейчас подаём' : t.h < 7.5 ? 'сегодня с 7:30' : 'завтра с 7:30';
+  return `<div class="spec lunch"><div class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 5.2c3.4-1.6 7.6-.6 9.3 2.3 1.2 2 .6 3.6 1.6 5.2 1 1.7.4 4-1.6 5.3-2.6 1.7-6.6 1.6-9.8.3C3.2 16.8 2 13.8 2.8 11c.8-2.8 1.9-4.4 4.7-5.8Z"/><circle cx="10.5" cy="11.5" r="2.6"/></svg></div><div><div class="sp-hd"><b>Завтраки · 7:30–11:00</b><i class="live${on ? ' on' : ''}">${label}</i></div><span>Напиток включён в стоимость. А можно собрать свой завтрак в конструкторе.</span></div></div>
+  <div class="spec"><div class="sp-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.4"/><path d="M12 7.4V12l3 1.8"/></svg></div><div><b>Предзаказ ко времени</b><span>Соберите заказ здесь и укажите, ко скольки придёте. На кассе вас будет ждать готовое — без очереди в обед и по утрам.</span></div></div>`;
+}
+function hintHTML(sec){
+  if (!sec.time) return sec.hint || '';
+  const h = minsk().h, on = h >= sec.time[0] && h < sec.time[1];
+  return `${sec.hint} · <span class="now${on ? '' : ' off'}">${on ? 'сейчас подаём' : h < sec.time[0] ? 'скоро начнём' : 'на сегодня всё, ждём завтра'}</span>`;
+}
+
+let curTab = '';
+function render(){
+  const filtering = S.f.size > 0; let h = '', count = 0; const shown = [];
+  if (!filtering) { h += ctorHTML(); shown.push(['c-ctor', 'Конструктор завтраков ♥', 'hl']); }
+  FOOD.forEach(sec => {
+    const items = sec.items.filter(pass); if (!items.length) return;
+    count += items.length; shown.push([slug(sec.cat), sec.cat]);
+    const hint = filtering ? '' : (hintHTML(sec) || '');
+    h += `<section id="${slug(sec.cat)}"><h2>${sec.cat}</h2>${hint ? `<div class="hint">${hint}</div>` : ''}${items.map(cardHTML).join('')}</section>`;
+  });
+  if (!filtering) DRINKS.forEach((sec, si) => { h += drinksHTML(sec, si); shown.push([slug(sec.cat), sec.cat]); });
+  if (filtering && !count) h = `<div class="empty">Под все выбранные условия блюд нет.<br>Попробуйте убрать один фильтр.</div>`;
+  $('#menu').innerHTML = h;
+  $('#specials').innerHTML = filtering ? '' : specialsHTML();
+  $('#tabs').innerHTML = shown.map(([id, t, cls]) => `<a class="tab${cls ? ' ' + cls : ''}" href="#${id}" data-c="${id}">${t}</a>`).join('');
+  $('#status').classList.toggle('on', filtering);
+  $('#count').textContent = filtering ? `${count} ${plural(count, ['блюдо', 'блюда', 'блюд'])}` : '';
+  ctBind(); curTab = ''; syncTab();
+}
+
+// типографика: короткие слова (в, и, к, на…) не висят в конце строки, тире не начинает новую строку
+const NB = ' ', SHORT =/(^|[\s(«"])([а-яёА-ЯЁ]{1,2}|№)\s+(?=\S)/g;
+const typoStr = t => t.replace(SHORT, '$1$2' + NB).replace(SHORT, '$1$2' + NB)
+  .replace(/ ([—–]) /g, NB + '$1 ').replace(/(\d) (?=(г|мл|ккал|BYN|кг|шт)(?![а-яёa-z]))/gi, '$1' + NB);
+function typo(root){
+  if (root && root.nodeType === 3) root = root.parentNode;
+  if (!root || !root.isConnected) return;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  for (let n; (n = w.nextNode());) {
+    const p = n.parentNode && n.parentNode.nodeName; if (p === 'SCRIPT' || p === 'STYLE') continue;
+    const t = typoStr(n.nodeValue); if (t !== n.nodeValue) n.nodeValue = t;
+  }
+}
+typo(document.body);
+new MutationObserver(ms => ms.forEach(m => m.type === 'characterData' ? typo(m.target) : m.addedNodes.forEach(n => (n.nodeType === 1 || n.nodeType === 3) && typo(n))))
+  .observe(document.body, {childList: true, subtree: true, characterData: true});
+
+// активная вкладка по прокрутке
+function syncTab(){
+  let cur = '';
+  document.querySelectorAll('#menu > section').forEach(sec => { if (sec.getBoundingClientRect().top <= 160) cur = sec.id; });
+  if (!cur) cur = document.querySelector('#menu > section')?.id || '';
+  if (cur === curTab) return;
+  curTab = cur;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.c === cur));
+  const on = document.querySelector('.tab.on'), bar = $('#tabs');
+  if (on) bar.scrollTo({left: on.offsetLeft - (bar.clientWidth - on.offsetWidth)/2, behavior:'smooth'});
+}
+let syncReq = 0;
+addEventListener('scroll', () => { if (!syncReq) syncReq = requestAnimationFrame(() => { syncReq = 0; syncTab(); }); }, {passive:true});
+$('#tabs').addEventListener('click', e => {
+  const t = e.target.closest('.tab'); if (!t) return;
+  e.preventDefault();
+  const el = document.getElementById(t.dataset.c);
+  scrollTo({top: el.getBoundingClientRect().top + scrollY - $('.bar').offsetHeight - 8, behavior:'smooth'});
+});
+
+function topOfMenu(){ const y = $('#menu').getBoundingClientRect().top + scrollY - $('.bar').offsetHeight - 8; if (scrollY > y) scrollTo({top:y, behavior:'smooth'}); }
+$('#unit').addEventListener('click', e => {
+  const u = e.target.closest('[data-u]'); if (!u) return;
+  S.per100 = u.dataset.u === '1';
+  document.querySelectorAll('#unit button').forEach(b => b.classList.toggle('on', b === u));
+  const y = scrollY; render(); scrollTo(0, y);
+});
+$('#filters').addEventListener('click', e => {
+  const c = e.target.closest('.chip'); if (!c) return;
+  const f = c.dataset.f; S.f.has(f) ? S.f.delete(f) : S.f.add(f); c.classList.toggle('on');
+  render(); topOfMenu();
+});
+$('#reset').addEventListener('click', () => { S.f.clear(); document.querySelectorAll('.chip').forEach(c => c.classList.remove('on')); render(); topOfMenu(); });
+
+// шторка: карточка блюда, корзина, счёт
+function showSheet(html, noHistory){
+  const sh = $('#sheet'); sh.innerHTML = `<div class="grab"><button class="close" aria-label="Закрыть">×</button></div>` + html;
+  sh.scrollTop = 0; sh.style.transform = '';
+  sh.classList.add('on'); $('#veil').classList.add('on'); document.body.style.overflow = 'hidden';
+  if (!noHistory && !history.state?.sheet) history.pushState({sheet:1}, '');   // «Назад» на телефоне закроет шторку, а не меню
+}
+function openSheet(it, noHistory){
+  const kb = it.b*4, kj = it.j*9, ku = it.u*4, sum = kb + kj + ku;
+  const small = SMALLIMG.has(it.img);
+  showSheet(`<img class="${small ? 'small' : ''}" src="${imgSrc(it.img)}" alt="${it.n}">
+    <div class="in"><div class="row"><div class="name">${it.n}${it.sub ? `<em>${it.sub}</em>` : ''}</div>${priceHTML(it)}</div>
+    <div class="weight">${it.w} г</div><div class="desc">${it.d}</div>
+    <div class="detail"><div class="split"><div style="width:${kb/sum*100}%;background:var(--b)"></div><div style="width:${kj/sum*100}%;background:var(--j)"></div><div style="width:${ku/sum*100}%;background:var(--u)"></div></div>
+      <div class="legend"><span><b style="background:var(--b)"></b>белки ${Math.round(kb/sum*100)}%</span><span><b style="background:var(--j)"></b>жиры ${Math.round(kj/sum*100)}%</span><span><b style="background:var(--u)"></b>углеводы ${Math.round(ku/sum*100)}%</span></div>
+      <table class="t"><tr><th></th><th>порция ${it.w} г</th><th>100 г</th></tr>
+      ${[['Калории, ккал', 'k', 0], ['Белки, г', 'b', 1], ['Жиры, г', 'j', 1], ['Углеводы, г', 'u', 1]].map(([l, k, d]) =>
+        `<tr><td>${l}</td><td>${d ? fmt(it[k]) : Math.round(it[k])}</td><td>${d ? fmt(it[k]*100/it.w) : Math.round(it[k]*100/it.w)}</td></tr>`).join('')}</table>
+      <div class="src">Доля калорий: сколько энергии в блюде дают белки, жиры и углеводы. Цифры примерные — точные считаются по техкартам.</div></div>
+    ${ORDER ? `<div class="sh-add"><button class="btn red" data-add="${it.id}">Добавить в заказ · ${fmt(it.p)} BYN</button></div>` : ''}</div>`, noHistory);
+}
+function hideSheet(){ const sh = $('#sheet'); sh.style.transform = ''; sh.style.transition = ''; sh.classList.remove('on'); $('#veil').classList.remove('on'); document.body.style.overflow = ''; }
+function closeSheet(){ if (history.state?.sheet) history.back(); else hideSheet(); }
+history.scrollRestoration = 'manual';
+addEventListener('popstate', hideSheet);
+(() => {   // свайп вниз закрывает шторку
+  const sh = $('#sheet'); let y0 = null, dy = 0;
+  sh.addEventListener('touchstart', e => { if (sh.scrollTop <= 0 && !e.target.closest('input,select')) { y0 = e.touches[0].clientY; dy = 0; } }, {passive:true});
+  sh.addEventListener('touchmove', e => { if (y0 === null) return; dy = e.touches[0].clientY - y0; if (dy > 0) { sh.style.transition = 'none'; sh.style.transform = `translateY(${dy}px)`; } else y0 = null; }, {passive:true});
+  sh.addEventListener('touchend', () => { if (y0 === null) return; sh.style.transition = ''; if (dy > 110) closeSheet(); else sh.style.transform = ''; y0 = null; });
+})();
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-add]');
+  if (a) { e.stopPropagation(); addToCart(a.dataset.add); if (a.classList.contains('add')) { a.classList.remove('pop'); a.offsetWidth; a.classList.add('pop'); } return; }
+  const c = e.target.closest('#menu .card');
+  if (c) { openSheet(ITEMS[c.dataset.id]); onAct(1); }
+});
+$('#menu').addEventListener('keydown', e => { const c = e.target.closest('.card'); if (c && !e.target.closest('.add') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openSheet(ITEMS[c.dataset.id]); onAct(1); } });
+$('#veil').addEventListener('click', closeSheet);
+$('#sheet').addEventListener('click', e => { if (e.target.closest('.close')) closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+// всплывающая подсказка снизу шапки (и ачивки режима заказа)
+let otTimer = 0;
+function otoast(html, ms = 3200){ $('#otoastT').innerHTML = html; const t = $('#otoast'); t.classList.add('on'); clearTimeout(otTimer); otTimer = setTimeout(() => t.classList.remove('on'), ms); }
+// звуки: в демо есть настоящие, здесь — тихие заглушки, их подменяет демо-скрипт
+let sfx = () => {};
+
+// ---------- заказ со столика (?t=N) ----------
+const cart = {}, extra = {}, sent = [];
+let orderNo = 16;
+const itemOf = id => ITEMS[id] || extra[id];
+const ACH = {add:'Первое блюдо в заказе', ctor:'Завтрак собран в конструкторе', order:'Предзаказ отправлен', box:'Фудбокс выбран'};
+const got = new Set();
+function ach(k){ if (!SHOWACH || got.has(k)) return; got.add(k); sfx('achv'); otoast(`Ачивка ${got.size} из ${Object.keys(ACH).length}: <b>${ACH[k]}</b>`, 2600); }
+function addToCart(id, item){
+  if (!ORDER) return;
+  if (item) extra[id] = item;
+  cart[id] = (cart[id] || 0) + 1; paintCart(); sfx('add'); ach('add');
+  document.querySelectorAll(`.add[data-add="${id}"]`).forEach(b => { let q = b.querySelector('.q'); if (!q) { q = document.createElement('span'); q.className = 'q'; b.appendChild(q); } q.textContent = cart[id]; });
+  if (item) otoast(`В заказе: <b>${item.n}</b>`);
+}
+const cartIds = () => Object.keys(cart).filter(id => cart[id] > 0);
+const cartSum = () => cartIds().reduce((a, id) => a + itemOf(id).p * cart[id], 0);
+function paintCart(){
+  const n = cartIds().reduce((a, id) => a + cart[id], 0), bar = $('#cartbar');
+  bar.classList.toggle('on', n > 0);
+  $('#cbText').innerHTML = n ? `${n} ${plural(n, ['позиция', 'позиции', 'позиций'])} · <b>${fmt(cartSum())} BYN</b>` : '';
+  bar.classList.remove('bump'); bar.offsetWidth; bar.classList.add('bump');
+}
+function cartRow(id){
+  const it = itemOf(id);
+  return `<li><div class="cn">${it.n}${it.sub ? `<small>${it.sub}</small>` : it.v ? `<small>${it.v}${/^\d+$/.test(it.v) ? ' мл' : ''}</small>` : ''}</div>
+    <div class="qty"><button onclick="cartStep('${id}',-1)" aria-label="Меньше">−</button><span>${cart[id]}</span><button onclick="cartStep('${id}',1)" aria-label="Больше">+</button></div><div class="cp">${fmt(it.p * cart[id])}</div></li>`;
+}
+function openCart(){
+  const ids = cartIds();
+  if (!ids.length) { hideSheet(); return; }
+  const kcal = ids.reduce((a, id) => a + (itemOf(id).k || 0) * cart[id], 0);
+  showSheet(`<div class="in" style="padding-top:22px"><div class="kick">предзаказ</div><h3>Ваш заказ</h3>
+    <ul class="cl">${ids.map(cartRow).join('')}</ul>
+    <div class="tot"><span>${kcal ? `≈ ${Math.round(kcal)} ккал в блюдах` : ''}</span><b>${fmt(cartSum())} BYN</b></div>
+    <div class="sh-btns"><button class="btn red" onclick="orderTime()">Выбрать время →</button><button class="btn ghost" onclick="closeSheet()">Добавить ещё</button></div></div>`, $('#sheet').classList.contains('on'));
+}
+
+// шаг 2 предзаказа: ко скольки и куда
+function slots(){
+  const t = minsk(), out = [];
+  for (let k = 1; k <= 5; k++) {
+    const h = t.h + k * 0.25; if (h >= 22) break;
+    const hh = Math.floor(h), mm = Math.round((h - hh) * 12) * 5;
+    out.push(String(hh % 24).padStart(2, '0') + ':' + String(mm % 60).padStart(2, '0'));
+  }
+  return out.length ? out : ['08:00', '08:30', '09:00'];
+}
+const ORD = {time:null, where:'table'};
+function orderTime(){
+  const list = slots();
+  ORD.time = ORD.time && list.includes(ORD.time) ? ORD.time : (list[1] || list[0]);
+  showSheet(`<div class="in" style="padding-top:22px"><div class="kick">предзаказ · шаг 2</div><h3>Ко скольки готовить?</h3>
+    <p class="desc">Кухня начнёт так, чтобы к этому времени всё было готово. Гость не стоит в очереди у кассы, а кухня ровнее проходит час пик.</p>
+    <div class="slots" id="slots">${list.map(x => `<button class="slot${x === ORD.time ? ' on' : ''}" data-t="${x}">${x}</button>`).join('')}</div>
+    <div class="seg ct-mode" id="ordWhere" style="margin:14px auto 0"><button class="${ORD.where === 'table' ? 'on' : ''}" data-w="table">Сяду за столик</button><button class="${ORD.where === 'take' ? 'on' : ''}" data-w="take">Заберу с собой</button></div>
+    <div class="sh-btns"><button class="btn red" onclick="sendOrder()">Отправить предзаказ</button><button class="btn ghost" onclick="openCart()">Назад к заказу</button></div></div>`, true);
+  $('#slots').addEventListener('click', e => { const b = e.target.closest('.slot'); if (!b) return;
+    ORD.time = b.dataset.t; document.querySelectorAll('.slot').forEach(x => x.classList.toggle('on', x === b)); sfx('add'); });
+  $('#ordWhere').addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
+    ORD.where = b.dataset.w; document.querySelectorAll('#ordWhere button').forEach(x => x.classList.toggle('on', x === b)); sfx('soft'); });
+}
+function cartStep(id, d){
+  cart[id] = Math.max(0, (cart[id] || 0) + d); if (!cart[id]) delete cart[id];
+  document.querySelectorAll(`.add[data-add="${id}"] .q`).forEach(q => cart[id] ? q.textContent = cart[id] : q.remove());
+  paintCart(); openCart(); sfx(d > 0 ? 'add' : 'soft');
+}
+function sendOrder(){
+  const ids = cartIds(); if (!ids.length) return;
+  if (!ORD.time) ORD.time = slots()[1] || slots()[0];
+  const no = ++orderNo, items = ids.map(id => ({n: itemOf(id).n, q: cart[id], p: itemOf(id).p}));
+  const sum = items.reduce((a, x) => a + x.p * x.q, 0);
+  sent.push({no, items, sum});
+  ids.forEach(id => delete cart[id]); document.querySelectorAll('.add .q').forEach(q => q.remove()); paintCart();
+  const where = ORD.where === 'take' ? 'на вынос' : 'за столик';
+  showSheet(`<div class="in center" style="padding-top:26px"><div class="done-ic">✓</div><div class="kick">предзаказ № ${no}</div><h3>К ${ORD.time} будет готово</h3>
+    <p class="desc">Заказ ${where}. Он уже на экране кухни: повар видит время и начинает в нужный момент. Гостю придёт напоминание, а на кассе его ждёт готовое.</p>
+    <div class="steps3" id="ordSteps"><div class="on">принят</div><div>готовим</div><div>ждёт вас</div></div>
+    <div class="sh-btns"><button class="btn ghost" onclick="closeSheet()">Вернуться в меню</button></div></div>`, true);
+  [1, 2].forEach(k => setTimeout(() => { const el = document.querySelectorAll('#ordSteps div')[k]; if (el) { el.classList.add('on'); sfx('step'); } }, 1600 * k));
+  sfx('end'); ach('order'); onAct(3);
+}
+
+// витрина фудбоксов
+const BOXES = [
+  {n:'Фудбокс на двоих', d:'Завтрак или обед в коробке: два основных блюда, салат, два десерта и напитки.', p:65},
+  {n:'Детский праздник', d:'Наггетсы, блинчики, фрукты и сладости на компанию из 6 детей.', p:120},
+  {n:'Кейтеринг на офис', d:'Сэндвичи, боулы, десерты и кофе на 10 человек. Доставим ко времени.', p:280},
+];
+function openBoxes(){
+  ach('box');
+  showSheet(`<div class="in" style="padding-top:22px"><div class="kick">фудбоксы и кейтеринг</div><h3>Собрать коробку</h3>
+    <p class="desc">Сейчас это отдельный аккаунт и переписка в директе: гость спрашивает состав и цену, кто-то из вас отвечает. Здесь он сразу видит, что внутри и сколько стоит.</p>
+    <ul class="cl">${BOXES.map(b => `<li><div class="cn">${b.n}<small>${b.d}</small></div><div class="cp">${fmt(b.p)}</div></li>`).join('')}</ul>
+    <div class="sh-btns"><button class="btn red" onclick="boxDone()">Оставить заявку</button><button class="btn ghost" onclick="closeSheet()">Вернуться в меню</button></div>
+    <div class="src center">Составы и цены коробок — пример для демонстрации, ваши подставим из прайса кейтеринга.</div></div>`);
+}
+function boxDone(){
+  showSheet(`<div class="in center" style="padding-top:26px"><div class="done-ic">♥</div><h3>Заявка принята</h3>
+    <p class="desc">Это демо — заявка никуда не ушла. В рабочей версии она сразу приходит вам в Telegram: какая коробка, на сколько человек и ко скольки нужна. Гостю — подтверждение.</p>
+    <div class="sh-btns"><button class="btn ghost" onclick="closeSheet()">Вернуться в меню</button></div></div>`, true);
+  sfx('end');
+}
+
+$('#murText').textContent = INFO.allergy;
+
+// в исходном index.html QR-кодов ещё нет — они появляются при сборке; показываем это явно
+addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.qr, .tq, .qrw').forEach(el => {
+    if (el.querySelector('svg')) return;
+    el.classList.add('qr-empty');
+    el.innerHTML = '<span>QR появится<br>после сборки</span>';
+  });
+});
+
+render();
+
+// высота липкой шапки: под ней встаёт полка с тарелкой конструктора
+const setBarH = () => { const b = document.querySelector('.bar'); if (b) document.documentElement.style.setProperty('--barh', Math.round(b.getBoundingClientRect().height) + 'px'); };
+setBarH(); addEventListener('resize', setBarH); addEventListener('load', setBarH);
+</script>
+
+</body>
+</html>
